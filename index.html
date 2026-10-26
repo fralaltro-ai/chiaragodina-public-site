@@ -125,19 +125,11 @@
       text-underline-offset: 3px;
       transition: color 0.15s ease, opacity 0.15s ease;
     }
-    a:hover {
+    a:hover,
+    a:focus-visible,
+    a:active {
       color: var(--brand-primary);
       opacity: 1;
-    }
-    .site-header a:not(.nav-item),
-    .site-footer a {
-      color: var(--surface-white);
-    }
-    .site-header a:not(.nav-item):hover,
-    .site-header a:not(.nav-item):focus-visible,
-    .site-footer a:hover,
-    .site-footer a:focus-visible {
-      color: var(--surface-white);
     }
 
     .doc-link,
@@ -210,10 +202,12 @@
       transition: opacity 0.15s ease;
     }
     .brand-main-title:hover,
-    .brand-main-title:focus-visible {
+    .brand-main-title:focus,
+    .brand-main-title:focus-visible,
+    .brand-main-title:active {
       color: var(--surface-white);
       text-decoration: none;
-      opacity: 0.9;
+      opacity: 0.92;
     }
     .brand-sub-title {
       font-family: 'Marcellus', Georgia, serif;
@@ -226,10 +220,12 @@
       transition: opacity 0.15s ease;
     }
     .brand-sub-title:hover,
-    .brand-sub-title:focus-visible {
+    .brand-sub-title:focus,
+    .brand-sub-title:focus-visible,
+    .brand-sub-title:active {
       color: var(--surface-white);
       text-decoration: none;
-      opacity: 0.9;
+      opacity: 0.92;
     }
     .header-contacts {
       display: flex;
@@ -248,7 +244,9 @@
       transition: opacity 0.15s ease, text-decoration 0.15s ease;
     }
     .header-contact-item:hover,
-    .header-contact-item:focus-visible {
+    .header-contact-item:focus,
+    .header-contact-item:focus-visible,
+    .header-contact-item:active {
       color: var(--surface-white);
       text-decoration: underline;
       text-underline-offset: 4px;
@@ -287,6 +285,14 @@
       justify-content: center;
       cursor: pointer;
       padding: 0;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .nav-toggle:hover,
+    .nav-toggle:focus,
+    .nav-toggle:focus-visible,
+    .nav-toggle:active {
+      background-color: var(--neutral-light);
+      color: var(--brand-primary);
     }
     .main-nav {
       display: flex;
@@ -306,7 +312,7 @@
       display: flex;
       flex: 0 1 auto;
     }
-    .nav-link {
+    .main-nav .nav-link {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -321,10 +327,15 @@
       white-space: nowrap;
       transition: background-color 0.15s ease, color 0.15s ease;
     }
-    .nav-link:hover,
-    .nav-link.active {
+    .main-nav .nav-link:hover,
+    .main-nav .nav-link:focus,
+    .main-nav .nav-link:focus-visible,
+    .main-nav .nav-link:active,
+    .main-nav .nav-link.active,
+    .main-nav .nav-link[aria-current="page"] {
       background-color: var(--surface-white);
       color: var(--brand-primary);
+      text-decoration: none;
       opacity: 1;
     }
     .dropdown-menu {
@@ -352,20 +363,26 @@
     .dropdown-menu li:last-child {
       border-bottom: none;
     }
-    .dropdown-link {
+    .dropdown-menu .dropdown-link {
       display: block;
       padding: 0.5rem 0.95rem;
       color: var(--surface-white);
+      background-color: transparent;
       text-decoration: none;
       font-family: 'Marcellus', Georgia, serif;
       font-size: 0.95rem;
       text-transform: uppercase;
       transition: background-color 0.15s ease, color 0.15s ease;
     }
-    .dropdown-link:hover,
-    .dropdown-link.active {
+    .dropdown-menu .dropdown-link:hover,
+    .dropdown-menu .dropdown-link:focus,
+    .dropdown-menu .dropdown-link:focus-visible,
+    .dropdown-menu .dropdown-link:active,
+    .dropdown-menu .dropdown-link.active,
+    .dropdown-menu .dropdown-link[aria-current="page"] {
       background-color: var(--surface-white);
       color: var(--brand-primary);
+      text-decoration: none;
       opacity: 1;
     }
 
@@ -499,7 +516,13 @@
       text-decoration: none;
     }
     .target-block h3 a:hover,
-    .target-block p a:hover {
+    .target-block h3 a:focus,
+    .target-block h3 a:focus-visible,
+    .target-block h3 a:active,
+    .target-block p a:hover,
+    .target-block p a:focus,
+    .target-block p a:focus-visible,
+    .target-block p a:active {
       text-decoration: underline;
     }
     .target-block p {
@@ -614,7 +637,10 @@
       border-radius: 2px;
       transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
     }
-    .didactic-link:hover {
+    .didactic-link:hover,
+    .didactic-link:focus,
+    .didactic-link:focus-visible,
+    .didactic-link:active {
       background-color: var(--surface-white);
       border-color: var(--neutral-light);
       color: var(--brand-primary);
@@ -624,7 +650,10 @@
       outline: 2px solid var(--brand-primary);
       outline-offset: 2px;
     }
-    .didactic-link:hover .didactic-dl-box {
+    .didactic-link:hover .didactic-dl-box,
+    .didactic-link:focus .didactic-dl-box,
+    .didactic-link:focus-visible .didactic-dl-box,
+    .didactic-link:active .didactic-dl-box {
       background-color: var(--brand-primary);
       color: var(--surface-white);
       border-color: var(--brand-primary);
@@ -659,7 +688,10 @@
       border-radius: 2px;
       transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
     }
-    .physics-channel-link:hover {
+    .physics-channel-link:hover,
+    .physics-channel-link:focus,
+    .physics-channel-link:focus-visible,
+    .physics-channel-link:active {
       background-color: var(--surface-white);
       border-color: var(--neutral-light);
       color: var(--brand-primary);
@@ -714,7 +746,11 @@
       text-transform: uppercase;
     }
     .story-link-item:hover,
+    .story-link-item:focus,
+    .story-link-item:focus-visible,
+    .story-link-item:active,
     .story-link-item.active {
+      color: var(--brand-primary);
       text-decoration: underline;
     }
     .story-link-item img {
@@ -790,6 +826,14 @@
       gap: 0.4rem;
       margin-bottom: 0.25rem;
     }
+    .year-heading-btn:hover,
+    .year-heading-btn:focus,
+    .year-heading-btn:focus-visible,
+    .year-heading-btn:active {
+      color: var(--brand-dark);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
     .year-events {
       padding-left: 0;
     }
@@ -828,7 +872,10 @@
       border-radius: 2px;
       transition: border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
     }
-    .direct-contact-row:hover {
+    .direct-contact-row:hover,
+    .direct-contact-row:focus,
+    .direct-contact-row:focus-visible,
+    .direct-contact-row:active {
       border-color: var(--brand-primary);
       box-shadow: 0 3px 10px rgba(169, 14, 0, 0.08);
       color: var(--brand-primary);
@@ -949,11 +996,13 @@
       transition: opacity 0.15s ease, text-decoration 0.15s ease;
     }
     .footer-col-title a:hover,
-    .footer-col-title a:focus-visible {
+    .footer-col-title a:focus,
+    .footer-col-title a:focus-visible,
+    .footer-col-title a:active {
       color: var(--surface-white);
       text-decoration: underline;
       text-underline-offset: 3px;
-      opacity: 0.9;
+      opacity: 0.92;
     }
     .footer-address p {
       margin: 0 0 0.2rem;
@@ -978,7 +1027,9 @@
       transition: opacity 0.15s ease, text-decoration 0.15s ease;
     }
     .footer-contact-row a:hover,
-    .footer-contact-row a:focus-visible {
+    .footer-contact-row a:focus,
+    .footer-contact-row a:focus-visible,
+    .footer-contact-row a:active {
       color: var(--surface-white);
       text-decoration: underline;
       text-underline-offset: 3px;
@@ -1053,7 +1104,9 @@
       z-index: 10001;
       padding: 0;
     }
-    .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {
+    .lightbox-close:hover, .lightbox-close:focus, .lightbox-close:focus-visible, .lightbox-close:active,
+    .lightbox-prev:hover, .lightbox-prev:focus, .lightbox-prev:focus-visible, .lightbox-prev:active,
+    .lightbox-next:hover, .lightbox-next:focus, .lightbox-next:focus-visible, .lightbox-next:active {
       background-color: var(--surface-white);
       color: var(--brand-primary);
     }
