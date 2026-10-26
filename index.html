@@ -230,11 +230,6 @@
       text-decoration: none;
       opacity: 0.92;
     }
-    .header-right-block {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
     .header-contacts {
       display: flex;
       flex-direction: column;
@@ -267,28 +262,6 @@
     .header-contact-item img {
       width: 20px;
       height: 20px;
-      object-fit: contain;
-      display: block;
-    }
-    .header-logo-wrap {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      flex-shrink: 0;
-      transition: opacity 0.15s ease, transform 0.15s ease;
-    }
-    .header-logo-wrap:hover,
-    .header-logo-wrap:focus,
-    .header-logo-wrap:focus-visible,
-    .header-logo-wrap:active {
-      opacity: 0.88;
-      transform: translateY(-1px);
-    }
-    .header-logo-img {
-      height: 64px;
-      width: auto;
-      max-width: 80px;
       object-fit: contain;
       display: block;
     }
@@ -1202,19 +1175,6 @@
       .nav-item {
         flex-direction: column;
       }
-      .header-logo-img {
-        height: 52px;
-        max-width: 66px;
-      }
-      .header-right-block {
-        gap: 1.15rem;
-      }
-    }
-
-    @media (max-width: 680px) {
-      .header-logo-wrap {
-        display: none;
-      }
     }
 
     @media (max-width: 520px) {
@@ -1243,19 +1203,14 @@
         <a href="#home" data-route="home" class="brand-main-title">Consulenza pedagogica e formazione</a>
         <a href="#home" data-route="home" class="brand-sub-title">d.ssa Chiara Godina</a>
       </div>
-      <div class="header-right-block">
-        <div class="header-contacts">
-          <a href="tel:+393402714079" target="_top" class="header-contact-item phone">
-            <img data-img="icon_phone" alt="Telefono" />
-            <span>340 2714079</span>
-          </a>
-          <a href="mailto:chiara.godina@gmail.com" target="_top" class="header-contact-item">
-            <img data-img="icon_email" alt="Email" />
-            <span>chiara.godina@gmail.com</span>
-          </a>
-        </div>
-        <a href="#home" data-route="home" class="header-logo-wrap" aria-label="Chiara Godina — Home">
-          <img data-img="img_site_logo" alt="Logo D.ssa Chiara Godina" class="header-logo-img" />
+      <div class="header-contacts">
+        <a href="tel:+393402714079" target="_top" class="header-contact-item phone">
+          <img data-img="icon_phone" alt="Telefono" />
+          <span>340 2714079</span>
+        </a>
+        <a href="mailto:chiara.godina@gmail.com" target="_top" class="header-contact-item">
+          <img data-img="icon_email" alt="Email" />
+          <span>chiara.godina@gmail.com</span>
         </a>
       </div>
     </div>
@@ -2899,8 +2854,7 @@
   "img_adol_ascolto": "./assets/images/img_adol_ascolto.webp",
   "img_chiara_portrait": "./assets/images/img_chiara_portrait.webp",
   "img_form_valigetta": "./assets/images/img_form_valigetta.webp",
-  "img_form_sport": "./assets/images/img_form_sport.webp",
-  "img_site_logo": "./assets/images/img_site_logo.png"
+  "img_form_sport": "./assets/images/img_form_sport.webp"
 };
 
     function hydrateImageVault() {
