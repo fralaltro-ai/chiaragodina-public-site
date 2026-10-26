@@ -2,7 +2,8 @@
 
 Sito web ufficiale e archivio risorse educative della Dott.ssa Chiara Godina.
 
-🌐 **Sito online:** [https://fralaltro-ai.github.io/chiaragodina-public-site/](https://fralaltro-ai.github.io/chiaragodina-public-site/)
+🌐 **Dominio Ufficiale:** [https://www.chiaragodina.com](https://www.chiaragodina.com)  
+🔗 **URL GitHub Pages:** [https://fralaltro-ai.github.io/chiaragodina-public-site/](https://fralaltro-ai.github.io/chiaragodina-public-site/)
 
 ---
 
