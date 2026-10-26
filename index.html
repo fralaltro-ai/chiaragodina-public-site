@@ -129,6 +129,16 @@
       color: var(--brand-primary);
       opacity: 1;
     }
+    .site-header a:not(.nav-item),
+    .site-footer a {
+      color: var(--surface-white);
+    }
+    .site-header a:not(.nav-item):hover,
+    .site-header a:not(.nav-item):focus-visible,
+    .site-footer a:hover,
+    .site-footer a:focus-visible {
+      color: var(--surface-white);
+    }
 
     .doc-link,
     .doc-download-link {
@@ -197,6 +207,13 @@
       text-decoration: none;
       margin: 0;
       letter-spacing: 0.02em;
+      transition: opacity 0.15s ease;
+    }
+    .brand-main-title:hover,
+    .brand-main-title:focus-visible {
+      color: var(--surface-white);
+      text-decoration: none;
+      opacity: 0.9;
     }
     .brand-sub-title {
       font-family: 'Marcellus', Georgia, serif;
@@ -206,6 +223,13 @@
       text-decoration: none;
       margin: 0;
       letter-spacing: 0.03em;
+      transition: opacity 0.15s ease;
+    }
+    .brand-sub-title:hover,
+    .brand-sub-title:focus-visible {
+      color: var(--surface-white);
+      text-decoration: none;
+      opacity: 0.9;
     }
     .header-contacts {
       display: flex;
@@ -221,6 +245,14 @@
       color: var(--surface-white);
       text-decoration: none;
       font-size: 0.95rem;
+      transition: opacity 0.15s ease, text-decoration 0.15s ease;
+    }
+    .header-contact-item:hover,
+    .header-contact-item:focus-visible {
+      color: var(--surface-white);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      opacity: 0.88;
     }
     .header-contact-item.phone {
       font-weight: 700;
@@ -384,22 +416,33 @@
       color: var(--neutral-dark);
     }
 
-    /* LAYOUT HOME ORIGINALE */
+    /* LAYOUT HOME ORIGINALE CON ARMONIZZAZIONE FORMATO */
     .home-photos-row {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 2.5rem;
-      align-items: center;
+      gap: 2rem;
+      align-items: stretch;
       margin-bottom: 3.25rem;
     }
     .home-photo-box {
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      border: 4px solid var(--surface-white);
+      box-shadow: 0 4px 14px rgba(43, 38, 37, 0.08);
+      background-color: var(--surface-white);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .home-photo-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(43, 38, 37, 0.12);
     }
     .home-photo-box img {
       width: 100%;
-      height: auto;
-      display: block;
+      aspect-ratio: 4 / 3;
       object-fit: cover;
+      display: block;
     }
     .home-editorial-grid {
       display: grid;
@@ -903,6 +946,14 @@
     .footer-col-title a {
       color: var(--surface-white);
       text-decoration: none;
+      transition: opacity 0.15s ease, text-decoration 0.15s ease;
+    }
+    .footer-col-title a:hover,
+    .footer-col-title a:focus-visible {
+      color: var(--surface-white);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      opacity: 0.9;
     }
     .footer-address p {
       margin: 0 0 0.2rem;
@@ -924,6 +975,14 @@
       color: var(--surface-white);
       text-decoration: none;
       font-size: 0.95rem;
+      transition: opacity 0.15s ease, text-decoration 0.15s ease;
+    }
+    .footer-contact-row a:hover,
+    .footer-contact-row a:focus-visible {
+      color: var(--surface-white);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      opacity: 0.88;
     }
     .footer-copyright {
       max-width: var(--max-w);
