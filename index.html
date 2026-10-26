@@ -1,0 +1,3322 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home — Consulenza pedagogica e formazione - D.ssa Chiara Godina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&amp;family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+      font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      color: #2B2625;
+      background-color: #F9F8F5;
+      line-height: 1.68;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    :root {
+      --brand-primary: #A90E00;
+      --brand-dark: #8B1106;
+      --surface-white: #FFFFFF;
+      --bg-main: #F9F8F5;
+      --ink-primary: #2B2625;
+      --neutral-dark: #2B2625;
+      --neutral-medium: #6E6864;
+      --neutral-light: #D9D3CC;
+      --border-interactive: #8C8278;
+      --max-w: 980px;
+    }
+
+    /* ACCESSIBILITÀ: FOCUS VISIBILE, SKIP LINK, PREFERS-REDUCED-MOTION */
+    :focus-visible {
+      outline: 2px solid var(--brand-primary);
+      outline-offset: 3px;
+    }
+    .site-header :focus-visible,
+    .site-footer :focus-visible,
+    .lightbox-overlay :focus-visible {
+      outline: 2px solid var(--surface-white);
+      outline-offset: 3px;
+    }
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      background: var(--surface-white);
+      color: var(--brand-primary);
+      padding: 0.6rem 1.2rem;
+      z-index: 10000;
+      font-weight: 700;
+      text-decoration: none;
+      border: 2px solid var(--brand-primary);
+      transition: top 0.2s ease;
+    }
+    .skip-link:focus {
+      top: 1rem;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ARCHITETTURA VISTE SPA CON FADE-IN 150MS */
+    .spa-view {
+      display: none;
+      opacity: 0;
+      transition: opacity 150ms ease-in-out;
+    }
+    .spa-view.active-view {
+      display: block;
+    }
+    .spa-view.visible-view {
+      opacity: 1;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Marcellus', Georgia, serif;
+      color: var(--brand-primary);
+      font-weight: 400;
+      line-height: 1.25;
+      margin-top: 0;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      font-size: clamp(1.85rem, 3.2vw, 2.35rem);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+    h2 {
+      font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+    }
+    h3 {
+      font-size: clamp(1.15rem, 1.8vw, 1.38rem);
+      text-transform: uppercase;
+      margin-bottom: 0.65rem;
+    }
+    h4 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p { margin-top: 0; margin-bottom: 1rem; }
+    ul, ol { margin-top: 0; margin-bottom: 1.2rem; padding-left: 1.35rem; }
+    li { margin-bottom: 0.35rem; }
+    li::marker { color: currentColor; }
+
+    a {
+      color: var(--brand-dark);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.15s ease, opacity 0.15s ease;
+    }
+    a:hover {
+      color: var(--brand-primary);
+      opacity: 1;
+    }
+
+    .doc-link,
+    .doc-download-link {
+      color: var(--brand-dark);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.15s ease;
+    }
+    .doc-link:hover,
+    .doc-download-link:hover {
+      color: var(--brand-primary);
+    }
+    .cv-download-bar {
+      margin: 1.5rem 0;
+      padding: 1rem 1.25rem;
+      background: rgba(169, 14, 0, 0.04);
+      border-left: 3px solid var(--brand-primary);
+      border-radius: 2px;
+    }
+
+    strong, b {
+      font-weight: 700;
+    }
+    .display-inline {
+      font-family: 'Marcellus', Georgia, serif;
+      text-transform: uppercase;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    hr.editorial-divider {
+      border: none;
+      border-top: 1px solid var(--neutral-light);
+      margin: 2rem 0;
+    }
+
+    /* HEADER GLOBALE FEDELE ALL'ORIGINALE */
+    .site-header {
+      background-color: var(--brand-primary);
+      color: var(--surface-white);
+      width: 100%;
+      padding: 1.35rem 1.25rem 0;
+    }
+    .header-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      padding-bottom: 1.1rem;
+    }
+    .brand-titles {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .brand-main-title {
+      font-family: 'Marcellus', Georgia, serif;
+      font-size: clamp(1.35rem, 2.3vw, 2.15rem);
+      line-height: 1.15;
+      color: var(--surface-white);
+      text-transform: uppercase;
+      text-decoration: none;
+      margin: 0;
+      letter-spacing: 0.02em;
+    }
+    .brand-sub-title {
+      font-family: 'Marcellus', Georgia, serif;
+      font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+      color: var(--surface-white);
+      text-transform: uppercase;
+      text-decoration: none;
+      margin: 0;
+      letter-spacing: 0.03em;
+    }
+    .header-contacts {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.55rem;
+      margin-top: 0.35rem;
+    }
+    .header-contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--surface-white);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .header-contact-item.phone {
+      font-weight: 700;
+      font-size: 1.02rem;
+    }
+    .header-contact-item img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* BARRA DI NAVIGAZIONE ORIZZONTALE CON FILETTI BIANCHI */
+    .nav-bar-wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .nav-bar-wrap nav {
+      width: 100%;
+    }
+    .nav-toggle {
+      display: none;
+      background-color: var(--surface-white);
+      color: var(--brand-primary);
+      border: none;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+    }
+    .main-nav {
+      display: flex;
+      align-items: stretch;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      border-top: 1px solid var(--surface-white);
+      border-bottom: 1px solid var(--surface-white);
+    }
+    .nav-item {
+      position: relative;
+      margin: 0;
+      display: flex;
+      flex: 0 1 auto;
+    }
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.45rem clamp(0.35rem, 0.7vw, 0.85rem);
+      color: var(--surface-white);
+      background-color: transparent;
+      text-decoration: none;
+      font-family: 'Marcellus', Georgia, serif;
+      font-size: clamp(0.82rem, 1.05vw, 0.98rem);
+      text-transform: uppercase;
+      letter-spacing: 0.015em;
+      white-space: nowrap;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .nav-link:hover,
+    .nav-link.active {
+      background-color: var(--surface-white);
+      color: var(--brand-primary);
+      opacity: 1;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 220px;
+      background-color: var(--brand-primary);
+      border: 1px solid var(--surface-white);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      z-index: 950;
+    }
+    .nav-item:hover .dropdown-menu,
+    .nav-item:focus-within .dropdown-menu,
+    .nav-item.dropdown-open .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu li {
+      margin: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    .dropdown-menu li:last-child {
+      border-bottom: none;
+    }
+    .dropdown-link {
+      display: block;
+      padding: 0.5rem 0.95rem;
+      color: var(--surface-white);
+      text-decoration: none;
+      font-family: 'Marcellus', Georgia, serif;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .dropdown-link:hover,
+    .dropdown-link.active {
+      background-color: var(--surface-white);
+      color: var(--brand-primary);
+      opacity: 1;
+    }
+
+    /* BREADCRUMB DI NAVIGAZIONE PER LE SOTTOPAGINE */
+    .subpage-breadcrumb {
+      max-width: var(--max-w);
+      margin: 0 auto 1.25rem;
+      padding-bottom: 0.55rem;
+      border-bottom: 1px solid var(--neutral-light);
+      font-size: 0.85rem;
+      color: var(--neutral-medium);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .subpage-breadcrumb a {
+      color: var(--brand-primary);
+      text-decoration: none;
+      font-family: 'Marcellus', Georgia, serif;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .subpage-breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    .breadcrumb-trail {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    /* CONTENITORE PRINCIPALE EDITORIALE */
+    .page-canvas {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3.5rem;
+      width: 100%;
+      min-height: 62vh;
+    }
+    .content-narrow {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .text-dark {
+      color: var(--neutral-dark);
+    }
+
+    /* LAYOUT HOME ORIGINALE */
+    .home-photos-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 3.25rem;
+    }
+    .home-photo-box {
+      cursor: pointer;
+    }
+    .home-photo-box img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+    .home-editorial-grid {
+      display: grid;
+      grid-template-columns: 170px 175px 1fr;
+      row-gap: 2.25rem;
+      column-gap: 1.5rem;
+      align-items: start;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .home-editorial-grid h2 {
+      margin: 0;
+      font-size: 1.55rem;
+      line-height: 1.2;
+    }
+
+    /* LAYOUT CONSULENZA ORIGINALE */
+    .consulenza-layout {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+    .consulenza-targets {
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
+      align-items: center;
+    }
+    .target-block {
+      text-align: center;
+      max-width: 240px;
+    }
+    .black-frame-photo {
+      border: 10px solid #000000;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+      margin-bottom: 0.75rem;
+      display: inline-block;
+      cursor: pointer;
+      background-color: #000000;
+    }
+    .black-frame-photo img {
+      width: 190px;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+    }
+    .target-block h3 {
+      margin-bottom: 0.25rem;
+      font-size: 1.3rem;
+    }
+    .target-block h3 a,
+    .target-block p a {
+      text-decoration: none;
+    }
+    .target-block h3 a:hover,
+    .target-block p a:hover {
+      text-decoration: underline;
+    }
+    .target-block p {
+      font-family: 'Marcellus', Georgia, serif;
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      line-height: 1.35;
+      margin: 0;
+    }
+
+    /* CITAZIONI GENITORI */
+    .parent-quotes-block {
+      text-align: center;
+      font-style: italic;
+      font-size: 1.15rem;
+      line-height: 1.65;
+      margin: 1.75rem auto 2.5rem;
+    }
+    .parent-quotes-block p {
+      margin-bottom: 0.2rem;
+    }
+
+    /* LAYOUT ADOLESCENTI ORIGINALE */
+    .adol-row {
+      display: grid;
+      grid-template-columns: 185px 210px 1fr;
+      gap: 1.75rem;
+      align-items: start;
+    }
+    .adol-row-title {
+      text-align: center;
+      padding-top: 1rem;
+    }
+    .adol-row-title h2 {
+      font-size: 1.45rem;
+      line-height: 1.25;
+      margin: 0;
+    }
+    .white-frame-photo {
+      border: 4px solid var(--surface-white);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.22);
+      background-color: var(--surface-white);
+      cursor: pointer;
+    }
+    .white-frame-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* BLOCCO APPUNTAMENTO IN CALCE ALLE PAGINE DI SERVIZIO */
+    .appointment-footer-block {
+      margin-top: 2.5rem;
+      padding-top: 1.35rem;
+      border-top: 1px solid var(--neutral-light);
+      text-align: center;
+      font-family: 'Marcellus', Georgia, serif;
+      text-transform: uppercase;
+      color: var(--brand-primary);
+    }
+    .appointment-footer-block p {
+      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+    }
+    .appointment-footer-block strong {
+      font-size: 1.12rem;
+    }
+
+    /* MATERIALE DIDATTICO */
+    .didactic-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: start;
+      margin-top: 2rem;
+    }
+    .didactic-col h2 {
+      text-align: center;
+      font-size: 1.28rem;
+      margin-bottom: 1.5rem;
+    }
+    .didactic-sublabel {
+      color: var(--ink-primary);
+      font-family: 'Marcellus', Georgia, serif;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin: 1.35rem 0 0.75rem;
+      font-weight: 400;
+    }
+    .didactic-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .didactic-item {
+      margin: 0;
+    }
+    .didactic-link {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      min-height: 44px;
+      padding: 0.45rem 0.65rem;
+      color: var(--ink-primary);
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+    .didactic-link:hover {
+      background-color: var(--surface-white);
+      border-color: var(--neutral-light);
+      color: var(--brand-primary);
+      text-decoration: none;
+    }
+    .didactic-link:focus-visible {
+      outline: 2px solid var(--brand-primary);
+      outline-offset: 2px;
+    }
+    .didactic-link:hover .didactic-dl-box {
+      background-color: var(--brand-primary);
+      color: var(--surface-white);
+      border-color: var(--brand-primary);
+    }
+    .didactic-dl-box {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border-interactive);
+      background-color: var(--surface-white);
+      color: var(--brand-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+    .physics-row {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .physics-channel-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--ink-primary);
+      padding: 0.45rem 0.65rem;
+      min-height: 44px;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+    .physics-channel-link:hover {
+      background-color: var(--surface-white);
+      border-color: var(--neutral-light);
+      color: var(--brand-primary);
+      text-decoration: none;
+    }
+    .physics-channel-link img {
+      width: 66px;
+      height: 66px;
+      object-fit: contain;
+    }
+
+    /* CHI SONO & LA MIA STORIA PROFESSIONALE */
+    .about-top-grid {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 2.25rem;
+      align-items: center;
+      max-width: 780px;
+      margin: 0 auto 2rem;
+    }
+    .saint-exupery-quote {
+      text-align: center;
+      font-style: italic;
+      color: var(--brand-primary);
+      margin: 1.25rem auto 1.75rem;
+      font-size: 0.98rem;
+      line-height: 1.5;
+    }
+    .saint-exupery-quote p {
+      margin-bottom: 0.15rem;
+    }
+    .story-section-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .story-links-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 2.5rem;
+      row-gap: 0.75rem;
+      max-width: 680px;
+      margin-top: 1.75rem;
+    }
+    .story-link-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      color: var(--brand-primary);
+      font-family: 'Marcellus', Georgia, serif;
+      font-size: 1.22rem;
+      text-transform: uppercase;
+    }
+    .story-link-item:hover,
+    .story-link-item.active {
+      text-decoration: underline;
+    }
+    .story-link-item img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    /* FORMAZIONE (2 BLOCCHI ALTERNATI) */
+    .formazione-row-1 {
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 2.25rem;
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
+    .formazione-row-2 {
+      display: grid;
+      grid-template-columns: 0.9fr 1.25fr;
+      gap: 2.25rem;
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
+
+    /* PEZZI DI FORMAZIONE (ELENCO EDITORIALE + RICERCA) */
+    .timeline-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin: 1.5rem 0 2rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--neutral-light);
+      background-color: var(--surface-white);
+    }
+    .timeline-search-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: 'Marcellus', Georgia, serif;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+      color: var(--brand-primary);
+    }
+    .timeline-search-input {
+      flex: 1 1 240px;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--neutral-light);
+      font-family: inherit;
+      font-size: 0.92rem;
+      color: var(--neutral-dark);
+      background-color: var(--surface-white);
+    }
+    .timeline-search-input:focus {
+      outline: 1px solid var(--brand-primary);
+      border-color: var(--brand-primary);
+    }
+    .year-block {
+      margin-bottom: 1.35rem;
+    }
+    .year-heading-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: 'Marcellus', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--brand-primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.25rem;
+    }
+    .year-events {
+      padding-left: 0;
+    }
+    .year-block.collapsed .year-events {
+      display: none;
+    }
+    .event-line {
+      margin-bottom: 0.2rem;
+      line-height: 1.45;
+      font-size: 0.93rem;
+    }
+
+    /* CONTATTI DIRETTI (EMAIL, TELEFONO, WHATSAPP) */
+    .contatti-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .direct-contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+      margin-bottom: 2rem;
+    }
+    .direct-contact-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.15rem;
+      text-decoration: none;
+      color: var(--ink-primary);
+      padding: 0.9rem 1.15rem;
+      min-height: 68px;
+      background-color: var(--surface-white);
+      border: 1px solid var(--neutral-light);
+      border-radius: 2px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+    }
+    .direct-contact-row:hover {
+      border-color: var(--brand-primary);
+      box-shadow: 0 3px 10px rgba(169, 14, 0, 0.08);
+      color: var(--brand-primary);
+      text-decoration: none;
+    }
+    .direct-contact-row:focus-visible {
+      outline: 2px solid var(--brand-primary);
+      outline-offset: 2px;
+    }
+    .direct-contact-icon-box {
+      width: 44px;
+      height: 44px;
+      background-color: var(--brand-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      padding: 8px;
+    }
+    .direct-contact-icon-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .direct-contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .direct-contact-label {
+      font-family: 'Marcellus', Georgia, serif;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--neutral-medium);
+      font-weight: 400;
+    }
+    .direct-contact-value {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--brand-primary);
+      line-height: 1.25;
+    }
+    .direct-contact-sub {
+      font-size: 0.85rem;
+      color: var(--neutral-medium);
+    }
+
+    /* PORTFOLIO GRIGLIA EDITORIALE PULITA */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.75rem;
+      margin: 1.5rem 0 2.5rem;
+    }
+    .portfolio-item {
+      background-color: var(--surface-white);
+      border: 1px solid var(--neutral-light);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+    .portfolio-thumb {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+      background-color: var(--surface-white);
+    }
+    .portfolio-thumb.contain {
+      object-fit: contain;
+      padding: 0.5rem;
+    }
+    .portfolio-caption {
+      padding: 0.75rem 0.9rem;
+      border-top: 1px solid var(--neutral-light);
+      font-size: 0.88rem;
+    }
+    .portfolio-caption strong {
+      display: block;
+      font-family: 'Marcellus', Georgia, serif;
+      text-transform: uppercase;
+      color: var(--brand-primary);
+      margin-bottom: 0.15rem;
+    }
+    .portfolio-caption span {
+      color: var(--neutral-dark);
+      font-size: 0.82rem;
+    }
+
+    /* FOOTER GLOBALE FEDELE ALL'ORIGINALE (SFONDO #A90E00, TESTI #FFFFFF) */
+    .site-footer {
+      background-color: var(--brand-primary);
+      color: var(--surface-white);
+      padding: 2.25rem 1.25rem 1.75rem;
+      width: 100%;
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .footer-col-title {
+      font-family: 'Marcellus', Georgia, serif;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      color: var(--surface-white);
+      margin: 0 0 0.85rem;
+      letter-spacing: 0.02em;
+    }
+    .footer-col-title a {
+      color: var(--surface-white);
+      text-decoration: none;
+    }
+    .footer-address p {
+      margin: 0 0 0.2rem;
+      color: var(--surface-white);
+      font-size: 0.92rem;
+    }
+    .footer-contact-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.45rem;
+    }
+    .footer-contact-row img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+    }
+    .footer-contact-row a {
+      color: var(--surface-white);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .footer-copyright {
+      max-width: var(--max-w);
+      margin: 1.5rem auto 0;
+      text-align: right;
+      font-size: 0.78rem;
+      color: var(--surface-white);
+    }
+
+    /* LIGHTBOX INTERATTIVO FULLSCREEN (SOLO BIANCO #FFFFFF E CREMISI #A90E00) */
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(18, 12, 12, 0.94);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 1.5rem;
+      user-select: none;
+      touch-action: pan-y;
+    }
+    .lightbox-overlay.active {
+      display: flex;
+    }
+    .lightbox-content-wrap {
+      position: relative;
+      max-width: 92vw;
+      max-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 78vh;
+      object-fit: contain;
+      background-color: var(--surface-white);
+      border: 2px solid var(--surface-white);
+    }
+    .lightbox-caption-bar {
+      margin-top: 0.9rem;
+      color: var(--surface-white);
+      text-align: center;
+      max-width: 760px;
+    }
+    .lightbox-caption-text {
+      font-size: 0.98rem;
+      color: var(--surface-white);
+      margin-bottom: 0.2rem;
+    }
+    .lightbox-counter {
+      font-size: 0.8rem;
+      color: var(--neutral-light);
+    }
+    .lightbox-close, .lightbox-prev, .lightbox-next {
+      position: fixed;
+      background-color: var(--brand-primary);
+      color: var(--surface-white);
+      border: 1px solid var(--surface-white);
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10001;
+      padding: 0;
+    }
+    .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {
+      background-color: var(--surface-white);
+      color: var(--brand-primary);
+    }
+    .lightbox-close { top: 1.25rem; right: 1.25rem; }
+    .lightbox-prev { left: 1.25rem; top: 50%; transform: translateY(-50%); }
+    .lightbox-next { right: 1.25rem; top: 50%; transform: translateY(-50%); }
+
+    /* RESPONSIVE BREAKPOINTS (1440px, 768px, 375px) */
+    @media (max-width: 860px) {
+      .home-photos-row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .home-editorial-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+      .consulenza-layout,
+      .adol-row,
+      .didactic-columns,
+      .about-top-grid,
+      .formazione-row-1,
+      .formazione-row-2,
+      .contatti-grid {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+      }
+      .adol-row-title {
+        text-align: left;
+        padding-top: 0;
+      }
+      .story-links-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-bar-wrap {
+        flex-direction: column;
+        align-items: flex-end;
+      }
+      .nav-toggle {
+        display: inline-flex;
+        margin-bottom: 0.75rem;
+      }
+      .main-nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+      }
+      .main-nav.open {
+        display: flex;
+      }
+      .nav-link {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 0.65rem 1rem;
+      }
+      .dropdown-menu {
+        position: static;
+        display: block;
+        border: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-left: 1.25rem;
+      }
+      .nav-item {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .editorial-contact-form {
+        grid-template-columns: 1fr;
+      }
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+      .footer-copyright {
+        text-align: left;
+      }
+      .header-contacts {
+        align-items: flex-start;
+      }
+    }
+</style>
+</head>
+<body>
+
+  <a href="#mainContent" class="skip-link">Salta al contenuto principale</a>
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="brand-titles">
+        <a href="#home" data-route="home" class="brand-main-title">Consulenza pedagogica e formazione</a>
+        <a href="#home" data-route="home" class="brand-sub-title">d.ssa Chiara Godina</a>
+      </div>
+      <div class="header-contacts">
+        <a href="tel:+393402714079" target="_top" class="header-contact-item phone">
+          <img data-img="icon_phone" alt="Telefono" />
+          <span>340 2714079</span>
+        </a>
+        <a href="mailto:chiara.godina@gmail.com" target="_top" class="header-contact-item">
+          <img data-img="icon_email" alt="Email" />
+          <span>chiara.godina@gmail.com</span>
+        </a>
+      </div>
+    </div>
+    <div class="nav-bar-wrap">
+      <button type="button" class="nav-toggle" id="navToggleBtn" aria-expanded="false" aria-controls="mainNavList" aria-label="Apri menu di navigazione">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <nav aria-label="Menu di Navigazione Principale">
+        <ul class="main-nav" id="mainNavList">
+          <li class="nav-item">
+            <a href="#home" data-route="home" class="nav-link" data-nav-group="home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="#consulenza" data-route="consulenza" class="nav-link" data-nav-group="consulenza">Consulenza</a>
+            <ul class="dropdown-menu">
+              <li><a href="#genitori" data-route="genitori" class="dropdown-link">Genitori</a></li>
+              <li><a href="#adolescenti" data-route="adolescenti" class="dropdown-link">Adolescenti</a></li>
+              <li><a href="#metodo-di-studio" data-route="metodo-di-studio" class="dropdown-link">Metodo di studio</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#scuole" data-route="scuole" class="nav-link" data-nav-group="scuole">Scuole</a>
+          </li>
+          <li class="nav-item">
+            <a href="#corsi-di-formazione" data-route="corsi-di-formazione" class="nav-link" data-nav-group="corsi-di-formazione">Corsi di formazione</a>
+            <ul class="dropdown-menu">
+              <li><a href="#sos-studio" data-route="sos-studio" class="dropdown-link">SOS STUDIO</a></li>
+              <li><a href="#corsi-online" data-route="corsi-online" class="dropdown-link">Corsi online</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#materiale-didattico" data-route="materiale-didattico" class="nav-link" data-nav-group="materiale-didattico">Materiale didattico</a>
+          </li>
+          <li class="nav-item">
+            <a href="#chi-sono" data-route="chi-sono" class="nav-link" data-nav-group="chi-sono">Chi sono</a>
+            <ul class="dropdown-menu">
+              <li><a href="#curriculum-vitae" data-route="curriculum-vitae" class="dropdown-link">Curriculum Vitae</a></li>
+              <li><a href="#formazione" data-route="formazione" class="dropdown-link">Formazione</a></li>
+              <li><a href="#pezzi-di-formazione" data-route="pezzi-di-formazione" class="dropdown-link">Pezzi di formazione</a></li>
+              <li><a href="#storie-in-rete" data-route="storie-in-rete" class="dropdown-link">Storie in rete</a></li>
+              <li><a href="#vita-nelle-scuole" data-route="vita-nelle-scuole" class="dropdown-link">Vita nelle scuole</a></li>
+              <li><a href="#progetti" data-route="progetti" class="dropdown-link">Progetti</a></li>
+              <li><a href="#articoli-e-pubblicazioni" data-route="articoli-e-pubblicazioni" class="dropdown-link">Articoli e pubblicazioni</a></li>
+              <li><a href="#portfolio" data-route="portfolio" class="dropdown-link">Portfolio</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#contatti" data-route="contatti" class="nav-link" data-nav-group="contatti">Contatti</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="mainContent" class="page-canvas">
+
+    <!-- VISTA SPA: home (Home) -->
+    <section class="spa-view active-view visible-view" id="view-home" data-page="home" data-title="Home">
+
+      <h1 style="position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;">Consulenza pedagogica e formazione — D.ssa Chiara Godina</h1>
+      <div class="home-photos-row">
+        <div class="home-photo-box" data-lightbox="home" data-caption="L'essenziale è invisibile agli occhi — Educare, educarsi, lasciarsi educare">
+          <img data-img="img_home_plico" alt="Plico chiuso con nastro e matita — L'essenziale è invisibile agli occhi" />
+        </div>
+        <div class="home-photo-box" data-lightbox="home" data-caption="Orientamento scolastico — Matite colorate e creatività">
+          <img data-img="img_home_matite" alt="Matite colorate su foglio di lavoro" />
+        </div>
+        <div class="home-photo-box" data-lightbox="home" data-caption="Formazione e crescita — Libri impilati e taccuino">
+          <img data-img="img_home_annie" alt="Libri impilati e taccuino per la formazione e lo studio" />
+        </div>
+      </div>
+
+      <div class="home-editorial-grid">
+        <div>
+          <h2>In cerca di...</h2>
+        </div>
+        <div>
+          <h2>Educazione</h2>
+        </div>
+        <div>
+          <p><span class="display-inline">Educare, educarsi, lasciarsi educare</span>: una delle sfide più grandi che ogni uomo deve affrontare costantemente nella vita, fin dalla nascita, in ogni situazione.</p>
+        </div>
+
+        <div></div>
+        <div>
+          <h2>Ascolto</h2>
+        </div>
+        <div>
+          <p style="margin-bottom:0.25rem;">Sentire non è certo ascoltare. Bisogna <span class="display-inline">imparare ad ascoltare</span>.</p>
+          <p>Non è facile mettersi in ascolto di chi è in difficoltà, di chi ci fa arrabbiare, di chi sembra ci prenda in giro in continuazione, di chi ci tratta male, di chi ci mortifica sempre, ma è possibile!</p>
+        </div>
+
+        <div></div>
+        <div>
+          <h2>Formazione</h2>
+        </div>
+        <div>
+          <p style="margin-bottom:0.25rem;"><span class="display-inline">Imparare ad imparare</span>. Non c'è nulla di più bello: scoprire che ogni giorno possiamo crescere, cambiare, migliorarci.</p>
+          <p>La scuola, lo studio, i corsi di formazione non sono un peso, ma un'opportunità per diventare persone migliori.</p>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: consulenza (Consulenza) -->
+    <section class="spa-view" id="view-consulenza" data-page="consulenza" data-title="Consulenza">
+
+      <h1>LA CONSULENZA PEDAGOGICA</h1>
+
+      <div class="consulenza-layout">
+        <div>
+          <h2>Chi può chiedere una consulenza pedagogica?</h2>
+          <p>Genitori, educatori, insegnanti della scuola dell'infanzia e primaria, docenti delle scuole secondarie, allenatori...</p>
+
+          <h2 style="margin-top:1.75rem;">Cos'è la consulenza pedagogica?</h2>
+          <p>È un’occasione per confrontarsi, crescere, migliorarsi, mettersi in discussione, prendere delle decisioni e fare delle scelte.</p>
+          <p>Attraverso dei <span class="display-inline">momenti di incontro</span> il pedagogista aiuta la persona ad individuare <span class="display-inline">nuove strategie</span> ed elaborare progetti su misura per le diverse situazioni che si sta trovando ad affrontare.</p>
+          <p>Il pedagogista non ha la “bacchetta magica” e non può fornire “ricette perfette”, ma cammina al fianco della persona per aiutarla a superare le difficoltà. La consulenza pedagogica <u><strong>non è un’attività psicologica o sanitaria</strong></u>; permette alla persona di <span class="display-inline">far leva sulle proprie risorse</span> personali per intraprendere un percorso di crescita.</p>
+          <p>Il pedagogista opera attraverso l'<span class="display-inline">ascolto attivo</span>: cerca di individuare e di condividere con la persona i possibili percorsi adatti al contesto, alla situazione e all’età.</p>
+
+          
+        <div class="appointment-footer-block">
+          <p>Per concordare un appuntamento</p>
+          <p>telefonare al <a href="tel:+393402714079" target="_top" style="text-decoration:none;"><strong>340/2714079</strong></a> dalle 14.30 alle 19.30</p>
+          <p>oppure scrivere a <a href="mailto:chiara.godina@gmail.com" target="_top"><strong>chiara.godina@gmail.com</strong></a></p>
+        </div>
+
+        </div>
+
+        <aside class="consulenza-targets" aria-label="Ambiti della consulenza pedagogica">
+          <div class="target-block">
+            <div class="black-frame-photo" data-lightbox="consulenza" data-caption="Genitori — Counselling educativo e sostegno alla genitorialità">
+              <img data-img="img_cons_famiglia" alt="Genitori" />
+            </div>
+            <h3><a href="#genitori" data-route="genitori">Genitori</a></h3>
+            <p><a href="#genitori" data-route="genitori">Counselling educativo e sostegno alla genitorialità</a></p>
+          </div>
+
+          <div class="target-block">
+            <div class="black-frame-photo" data-lightbox="consulenza" data-caption="Adolescenti — Spazio di ascolto, orientamento scolastico, metodo di studio">
+              <img data-img="img_cons_adol" alt="Adolescenti" />
+            </div>
+            <h3><a href="#adolescenti" data-route="adolescenti">Adolescenti</a></h3>
+            <p><a href="#adolescenti" data-route="adolescenti">Spazio di ascolto, orientamento scolastico, metodo di studio</a></p>
+          </div>
+
+          <div class="target-block">
+            <div class="black-frame-photo" data-lightbox="consulenza" data-caption="Educatori ed insegnanti — Supervisione e consulenza didattica">
+              <img data-img="img_cons_scuole" alt="Educatori ed insegnanti" />
+            </div>
+            <h3><a href="#scuole" data-route="scuole">Educatori ed insegnanti</a></h3>
+            <p><a href="#scuole" data-route="scuole">Supervisione e consulenza didattica</a></p>
+          </div>
+        </aside>
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: consulenza-pedagogica (Consulenza Pedagogica) -->
+    <section class="spa-view" id="view-consulenza-pedagogica" data-page="consulenza-pedagogica" data-title="Consulenza Pedagogica">
+
+      <nav class="subpage-breadcrumb" aria-label="Percorso di navigazione">
+        <div class="breadcrumb-trail">
+          <a href="#home" data-route="home">Home</a>
+          <span>/</span>
+          <a href="#consulenza" data-route="consulenza">Consulenza</a>
+          <span>/</span>
+          <span>Consulenza pedagogica</span>
+        </div>
+        <a href="#consulenza" data-route="consulenza">Torna a Consulenza</a>
+      </nav>
+
+      <h1>LA CONSULENZA PEDAGOGICA</h1>
+
+      <div class="consulenza-layout">
+        <div>
+          <h2>Chi può chiedere una consulenza pedagogica?</h2>
+          <p>Genitori, educatori, insegnanti della scuola dell'infanzia e primaria, docenti delle scuole secondarie, allenatori...</p>
+
+          <h2 style="margin-top:1.75rem;">Cos'è la consulenza pedagogica?</h2>
+          <p>È un’occasione per confrontarsi, crescere, migliorarsi, mettersi in discussione, prendere delle decisioni e fare delle scelte.</p>
+          <p>Attraverso dei <span class="display-inline">momenti di incontro</span> il pedagogista aiuta la persona ad individuare <span class="display-inline">nuove strategie</span> ed elaborare progetti su misura per le diverse situazioni che si sta trovando ad affrontare.</p>
+          <p>Il pedagogista non ha la “bacchetta magica” e non può fornire “ricette perfette”, ma cammina al fianco della persona per aiutarla a superare le difficoltà. La consulenza pedagogica <u><strong>non è un’attività psicologica o sanitaria</strong></u>; permette alla persona di <span class="display-inline">far leva sulle proprie risorse</span> personali per intraprendere un percorso di crescita.</p>
+          <p>Il pedagogista opera attraverso l'<span class="display-inline">ascolto attivo</span>: cerca di individuare e di condividere con la persona i possibili percorsi adatti al contesto, alla situazione e all’età.</p>
+
+          
+        <div class="appointment-footer-block">
+          <p>Per concordare un appuntamento</p>
+          <p>telefonare al <a href="tel:+393402714079" target="_top" style="text-decoration:none;"><strong>340/2714079</strong></a> dalle 14.30 alle 19.30</p>
+          <p>oppure scrivere a <a href="mailto:chiara.godina@gmail.com" target="_top"><strong>chiara.godina@gmail.com</strong></a></p>
+        </div>
+
+        </div>
+
+        <aside class="consulenza-targets" aria-label="Ambiti della consulenza pedagogica">
+          <div class="target-block">
+            <div class="black-frame-photo" data-lightbox="consulenza" data-caption="Genitori — Counselling educativo e sostegno alla genitorialità">
+              <img data-img="img_cons_famiglia" alt="Genitori" />
+            </div>
+            <h3><a href="#genitori" data-route="genitori">Genitori</a></h3>
+            <p><a href="#genitori" data-route="genitori">Counselling educativo e sostegno alla genitorialità</a></p>
+          </div>
+
+          <div class="target-block">
+            <div class="black-frame-photo" data-lightbox="consulenza" data-caption="Adolescenti — Spazio di ascolto, orientamento scolastico, metodo di studio">
+              <img data-img="img_cons_adol" alt="Adolescenti" />
+            </div>
+            <h3><a href="#adolescenti" data-route="adolescenti">Adolescenti</a></h3>
+            <p><a href="#adolescenti" data-route="adolescenti">Spazio di ascolto, orientamento scolastico, metodo di studio</a></p>
+          </div>
+
+          <div class="target-block">
+            <div class="black-frame-photo" data-lightbox="consulenza" data-caption="Educatori ed insegnanti — Supervisione e consulenza didattica">
+              <img data-img="img_cons_scuole" alt="Educatori ed insegnanti" />
+            </div>
+            <h3><a href="#scuole" data-route="scuole">Educatori ed insegnanti</a></h3>
+            <p><a href="#scuole" data-route="scuole">Supervisione e consulenza didattica</a></p>
+          </div>
+        </aside>
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: genitori (Genitori) -->
+    <section class="spa-view" id="view-genitori" data-page="genitori" data-title="Genitori">
+
+      
+      <nav class="subpage-breadcrumb" aria-label="Percorso di navigazione">
+        <div class="breadcrumb-trail">
+          <a href="#home" data-route="home">Home</a>
+          <span>/</span>
+          <a href="#consulenza" data-route="consulenza">Consulenza</a>
+          <span>/</span>
+          <span>Genitori</span>
+        </div>
+        <a href="#consulenza" data-route="consulenza">Torna a Consulenza</a>
+      </nav>
+
+      <h1>GENITORI</h1>
+
+      <div class="parent-quotes-block">
+        <p>"Mio figlio non ascolta mai…”</p>
+        <p>“Sono stanco di tutti questi capricci…”</p>
+        <p>“Fai quello che vuoi, basta che non rompi più!”</p>
+        <p>“Non so più come fare per…”</p>
+      </div>
+
+      <div class="content-narrow">
+        <p>Diventare <span class="display-inline">genitori</span> è una sfida, che richiede energie non indifferenti per poter essere affrontata con successo.</p>
+        <p>Spesso tanti genitori si sentono <span class="display-inline">soli</span> in questo cammino, temono di essere gli unici a vivere determinate fatiche ed esperienze. Qualche volta si arriva ad un punto in cui non si sa più cosa fare, credendo di <em><strong>“averle provate tutte”</strong></em>, ci si arrende, rischiando così di perdere credibilità nei confronti dei propri figli, ma soprattutto non riuscendo più ad essere un valido punto di riferimento per loro.</p>
+        <p>Gli <span class="display-inline">incontri individuali</span> o <span class="display-inline">di coppia</span> cercano di far fronte a questo senso di solitudine e di impotenza, rappresentando un possibile <span class="display-inline">punto di partenza</span> per favorire l’inizio di un cammino di crescita per mamme e papà che desiderano incontrarsi e confrontarsi sul difficile compito dell’essere genitori, riscoprendo in se stessi le <span class="display-inline">capacità</span> e <span class="display-inline">possibilità</span> per svolgere questo compito nel migliore dei modi.</p>
+
+        
+        <div class="appointment-footer-block">
+          <p>Per concordare un appuntamento</p>
+          <p>telefonare al <a href="tel:+393402714079" target="_top" style="text-decoration:none;"><strong>340/2714079</strong></a> dalle 14.30 alle 19.30</p>
+          <p>oppure scrivere a <a href="mailto:chiara.godina@gmail.com" target="_top"><strong>chiara.godina@gmail.com</strong></a></p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: adolescenti (Adolescenti) -->
+    <section class="spa-view" id="view-adolescenti" data-page="adolescenti" data-title="Adolescenti">
+
+      
+      <nav class="subpage-breadcrumb" aria-label="Percorso di navigazione">
+        <div class="breadcrumb-trail">
+          <a href="#home" data-route="home">Home</a>
+          <span>/</span>
+          <a href="#consulenza" data-route="consulenza">Consulenza</a>
+          <span>/</span>
+          <span>Adolescenti</span>
+        </div>
+        <a href="#consulenza" data-route="consulenza">Torna a Consulenza</a>
+      </nav>
+
+      <h1>ADOLESCENTI</h1>
+
+      <div class="adol-row">
+        <div class="adol-row-title">
+          <h2>Spazio<br />di ascolto</h2>
+        </div>
+        <div class="white-frame-photo" data-lightbox="adolescenti" data-caption="Spazio di ascolto">
+          <img data-img="img_adol_ascolto" alt="Spazio di ascolto" />
+        </div>
+        <div>
+          <p>Ci sono momenti in cui il confronto con i genitori si trasforma in un perenne <span class="display-inline">scontro</span>. Qualche volta è utile regalare ai propri figli uno <span class="display-inline">spazio di ascolto</span> <strong>differente, neutro</strong>, che li aiuti a trovare <strong>nuove modalità</strong> per affrontare le difficoltà quotidiane.</p>
+        </div>
+      </div>
+
+      <hr class="editorial-divider" />
+
+      <div class="adol-row">
+        <div class="adol-row-title">
+          <h2>Laboratori sul<br />metodo di studio</h2>
+        </div>
+        <div class="white-frame-photo" data-lightbox="adolescenti" data-caption="Laboratori sul metodo di studio">
+          <img data-img="img_adol_libri" alt="Laboratori sul metodo di studio" />
+        </div>
+        <div>
+          <p>Spesso molti ragazzi, agli inizi della scuola superiore o al primo anno di università, <strong>non riescono ad ottenere i risultati desiderati</strong>, nonostante un grande investimento di tempo ed energie.</p>
+          <p>Qualche volta si <span class="display-inline">scoraggiano</span> a tal punto dal voler smettere di studiare, cambiare scuola o facoltà. Non si sentono adeguati e capaci per affrontare un liceo, una scuola tecnica o professionale, il corso universitario da sempre sognato.</p>
+          <p>Passano ore sui libri, ma i <span class="display-inline">risultati sono molto scarsi o inferiori alle aspettative</span>.</p>
+          <p>I motivi possono essere molti.</p>
+          <p>Un <span class="display-inline">metodo di studio adeguato</span> e <span class="display-inline">personalizzato</span> può sicuramente infondere <strong>sicurezza</strong>, oltre che <strong>migliorare</strong> velocemente i <strong>risultati</strong>.</p>
+          <p style="margin-bottom:0.25rem;">Il <span class="display-inline">laboratorio sul metodo di studio</span> prevede un minimo di tre incontri individuali e porta ogni ragazzo:</p>
+          <p style="margin:0 0 0.2rem;">- ad acquisire <strong>consapevolezza</strong> del proprio stile cognitivo</p>
+          <p style="margin:0 0 0.2rem;">- ad <span class="display-inline">individuare gli strumenti più efficaci</span> per comprendere, memorizzare ed esporre i contenuti delle diverse discipline</p>
+          <p style="margin:0 0 0.2rem;">- a <span class="display-inline">organizzare</span> in modo più efficace il <span class="display-inline">tempo</span> dedicato allo studio</p>
+          <p style="margin:0 0 0.75rem;">- a imparare a <span class="display-inline">prendere appunti, fare schemi</span> e <span class="display-inline">mappe</span> realmente utili all'apprendimento</p>
+          <p>L'obiettivo di tale percorso è <span class="display-inline">imparare ad imparare</span>.</p>
+          <p>A questo link è possibile <a href="./assets/docs/servizi/brochure_metodo_studio_adolescenti.pdf" target="_blank" rel="noopener noreferrer" download class="doc-download-link"><strong>scaricare la brochure</strong></a> che illustra in modo dettagliato il laboratorio (oppure richiedila via email a <a href="mailto:chiara.godina@gmail.com" target="_top"><strong>chiara.godina@gmail.com</strong></a>).</p>
+        </div>
+      </div>
+
+      <hr class="editorial-divider" />
+
+      <div class="adol-row">
+        <div class="adol-row-title">
+          <h2>Orientamento<br />scolastico</h2>
+        </div>
+        <div class="white-frame-photo" data-lightbox="adolescenti" data-caption="Orientamento scolastico">
+          <img data-img="img_home_matite" alt="Orientamento scolastico — Matite colorate su foglio di lavoro" />
+        </div>
+        <div>
+          <p>Quello che siamo è il frutto delle scelte che abbiamo fatto nella nostra vita e delle persone che abbiamo incontrato nel nostro cammino.</p>
+          <p><span class="display-inline">Scegliere</span> la <strong>scuola superiore</strong> o la <strong>facoltà universitaria</strong> sono due delle scelte più difficili che un giovane deve affrontare.</p>
+          <p>Qualcuno ha le idee molto chiare e sa cosa vuol fare "da grande": in tal caso più che un orientamentoha bisogno di un aiuto per dare il giusto peso alle scelte possibili per poter valutare la migliore.</p>
+          <p>Altri ragazzi invece <strong>non hanno ben chiaro quale strada intraprendere</strong>, magari credono poco nelle proprie capacità o hanno vissuto con difficoltà e insofferenza le scuole medie o superiori. In tal caso scegliere una scuola o un corso universitario è ancora più difficile. Il <span class="display-inline">rischio</span> di scegliere a caso, per far contenti i genitori o per fare meno fatica, per alzarsi più tardi alla mattina o per seguire gli amici, è molto elevato. Un <span class="display-inline">momento di confronto</span> e di <span class="display-inline">riflessione</span> su ciò che ogni scelta può determinare, in termini concreti, sul proprio futuro, è sicuramente utile.</p>
+        </div>
+      </div>
+
+      
+        <div class="appointment-footer-block">
+          <p>Per concordare un appuntamento</p>
+          <p>telefonare al <a href="tel:+393402714079" target="_top" style="text-decoration:none;"><strong>340/2714079</strong></a> dalle 14.30 alle 19.30</p>
+          <p>oppure scrivere a <a href="mailto:chiara.godina@gmail.com" target="_top"><strong>chiara.godina@gmail.com</strong></a></p>
+        </div>
+
+
+    </section>
+
+
+    <!-- VISTA SPA: metodo-di-studio (Metodo di Studio) -->
+    <section class="spa-view" id="view-metodo-di-studio" data-page="metodo-di-studio" data-title="Metodo di Studio">
+
+      
+      <nav class="subpage-breadcrumb" aria-label="Percorso di navigazione">
+        <div class="breadcrumb-trail">
+          <a href="#home" data-route="home">Home</a>
+          <span>/</span>
+          <a href="#consulenza" data-route="consulenza">Consulenza</a>
+          <span>/</span>
+          <span>Metodo di studio</span>
+        </div>
+        <a href="#consulenza" data-route="consulenza">Torna a Consulenza</a>
+      </nav>
+
+      <h1>Laboratori individuali sul metodo di studio</h1>
+
+      <div style="max-width:860px; margin:0 auto 2rem; cursor:pointer;" data-lightbox="metodo" data-caption="Laboratori individuali sul metodo di studio">
+        <img data-img="img_metodo_lavagna" style="width:100%; height:auto; display:block;" alt="Laboratori individuali sul metodo di studio" />
+      </div>
+
+      <div style="max-width:560px; margin:0 auto;">
+        <h3>Cosa?</h3>
+        <p style="margin-bottom:0.2rem;">I laboratori sul metodo di studio sono degli incontri individuali in cui lo specialista e lo studente lavorano insieme, partendo dalle capacità e potenzialità del singolo studente, al fine di identificare le strategie di studio migliori per rendere più efficace l’apprendimento.</p>
+        <p><em>Sono previste un massimo di 3 lezioni individuali da 90 min</em></p>
+
+        <h3>Dove?</h3>
+        <p>A <strong>Casatenovo</strong> in via Garibaldi, 6 c/o lo studio di Consulenza Pedagogica e Formazione</p>
+
+        <h3>Perchè?</h3>
+        <p style="margin:0 0 0.2rem;">- per acquisire <strong>consapevolezza</strong> del tuo stile cognitivo</p>
+        <p style="margin:0 0 0.2rem;">- per individuare gli <strong>strumenti più efficaci</strong> per comprendere, memorizzare ed esporre i contenuti delle diverse discipline</p>
+        <p style="margin:0 0 0.2rem;">- per imparare a <strong>organizzare il tempo</strong> dedicato allo studio in modo più efficace</p>
+        <p style="margin:0 0 1.25rem;">- per <strong>imparare a prendere appunti</strong>, fare <strong>schemi</strong> e <strong>mappe</strong> realmente utili all’apprendimento</p>
+
+        <p>A questo link è possibile <a href="./assets/docs/servizi/brochure_laboratorio_individuale_metodo_studio.pdf" target="_blank" rel="noopener noreferrer" download class="doc-download-link"><strong>scaricare la brochure</strong></a> che illustra in modo dettagliato il laboratorio (oppure richiedila via email a <a href="mailto:chiara.godina@gmail.com" target="_top"><strong>chiara.godina@gmail.com</strong></a>).</p>
+
+        <div style="text-align:center; margin-top:2rem;">
+          <p style="margin-bottom:0.15rem; font-weight:600;">NOVITA'</p>
+          <h2 style="margin-bottom:0.65rem;">CORSO ONLINE</h2>
+          <p style="margin-bottom:0.25rem;">E' possibile organizzare corsi individuali o in piccolo gruppo</p>
+          <p style="margin-bottom:0.65rem;">tramite piattaforma meet.</p>
+          <p>Info: <a href="mailto:chiara.godina@gmail.com" target="_top">chiara.godina@gmail.com</a></p>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: scuole (Scuole) -->
+    <section class="spa-view" id="view-scuole" data-page="scuole" data-title="Scuole">
+
+      <h1>CONSULENZA PER INSEGNANTI, DOCENTI, EDUCATORI</h1>
+
+      <div class="content-narrow">
+        <p>È possibile richiedere incontri di supervisione e corsi di formazione presso la scuola o l'ente di appartenenza, formulando un progetto ad hoc sulla base delle necessità del personale docente, definendo contenuti e modalità personalizzate.</p>
+
+        <h2 style="margin-top:1.75rem;">Incontri di supervisione e counselling educativo</h2>
+        <ul class="font-display" style="text-transform:uppercase; font-size:1.05rem;">
+          <li>Didattica personalizzata</li>
+          <li>Gestione classi conflittuali</li>
+          <li>Programmazione personalizzata per alunni bes e dsa</li>
+        </ul>
+
+        <p style="margin-top:1.25rem;">Gli incontri possono essere effettuati anche presso la scuola di appartenenza e rivolti sia al singolo insegnante che all'intero corpo docente.</p>
+
+        <h2 style="margin-top:1.75rem;">Corsi di formazione per insegnanti e docenti di ogni ordine e grado</h2>
+        <ul class="font-display" style="text-transform:uppercase; font-size:1.05rem;">
+          <li>Metodologie didattiche attive</li>
+          <li>progettazione di lezioni efficaci</li>
+          <li>Metodo di studio</li>
+          <li>Ascolto attivo</li>
+          <li>Comunicazione efficace</li>
+          <li>Public speaking</li>
+        </ul>
+
+        
+        <div class="appointment-footer-block">
+          <p>Per concordare un appuntamento</p>
+          <p>telefonare al <a href="tel:+393402714079" target="_top" style="text-decoration:none;"><strong>340/2714079</strong></a> dalle 14.30 alle 19.30</p>
+          <p>oppure scrivere a <a href="mailto:chiara.godina@gmail.com" target="_top"><strong>chiara.godina@gmail.com</strong></a></p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: corsi-di-formazione (Corsi di Formazione) -->
+    <section class="spa-view" id="view-corsi-di-formazione" data-page="corsi-di-formazione" data-title="Corsi di Formazione">
+
+      <h1 style="margin-bottom:0.25rem;">CORSI DI FORMAZIONE</h1>
+      <h3 style="text-align:center; margin-bottom:2rem;">
+        per liberi professionisti, dirigenti, aziende,<br />
+        societa' sportive, allenatori, oratori, scuole
+      </h3>
+
+      <div class="content-narrow">
+        <p style="margin-bottom:0.2rem;">I <span class="display-inline">corsi di formazione</span> possono essere organizzati presso l'azienda, la società sportiva, l'oratorio o l'ente di appartenenza. Ogni percorso formativo prevede un <span class="display-inline">minimo di 2 moduli da due ore</span> ciascuno.</p>
+        <p style="margin-bottom:0.2rem;">E' possibile richiedere incontri di formazione su altre tematiche inerenti aspetti psico-pedagogici, oltre a quelli indicati di seguito e concordare dei progetti formativi ad hoc, in riferimento alle effettive esigenze dei richiedenti.</p>
+        <p style="margin-bottom:1.75rem;">Tutti i corsi prevedono l'utilizzo di <span class="display-inline">metodologie didattiche attive</span>.</p>
+
+        <ul style="list-style:disc; padding-left:1.5rem;">
+          <li style="margin-bottom:1.35rem;">
+            <h3>La percezione degli altri: quando la prima impressione può fare la differenza</h3>
+            <p style="margin-bottom:0.2rem;">Incontro formativo dedicato all’analisi delle modalità con cui “percepiamo” l’altro e come ciò può influire di conseguenza la relazione con lui.</p>
+            <p style="margin-bottom:0;">Partendo dalle teorie implicite della personalità, arrivando ai bias di attribuzione si comprenderanno quali strategie euristiche favoriscono il nostro relazionarci all'interno del contesto in cui lavoriamo, facciamo sport, educhiamo.</p>
+          </li>
+          <li style="margin-bottom:1.35rem;">
+            <h3>Comunicazione efficace: non solo parole!</h3>
+            <p style="margin-bottom:0;">Laboratorio didattico esperienziale dedicato alle strategie comunicative maggiormente efficaci nella comunicazione interpersonale e di gruppo.</p>
+          </li>
+          <li style="margin-bottom:1.35rem;">
+            <h3>Leadership a confronto</h3>
+            <p style="margin-bottom:0;">Analisi comparata di diversi stili di leadership, finalizzati alla maggior consapevolezza delle potenzialità intrinseche del leader “efficace”.</p>
+          </li>
+          <li style="margin-bottom:1.35rem;">
+            <h3>Quando dire è più che fare: lo stile assertivo</h3>
+            <p style="margin-bottom:0;">Laboratorio didattico esperienziale finalizzato all’acquisizione di strategie comunicative relazionali basate sull’utilizzo dell’assertività, per rendere più efficace il proprio operato sul singolo o sul team.</p>
+          </li>
+          <li style="margin-bottom:1.35rem;">
+            <h3>Team building</h3>
+            <p style="margin-bottom:0;">Workshop finalizzato a migliorare le modalità di lavoro in team, gruppo o squadra.</p>
+          </li>
+          <li style="margin-bottom:1.35rem;">
+            <h3>Genitori: quando il tifo fa bene</h3>
+            <p style="margin-bottom:0;">Incontri di taglio prettamente educativo per accompagnare i genitori "a bordo campo".</p>
+          </li>
+          <li style="margin-bottom:1.5rem;">
+            <h3>Ragazzi difficili o relazioni difficili?</h3>
+            <p style="margin-bottom:0;">Workshop finalizzato alla riflessione sulla gestione delle relazioni conflittuali con gli adolescenti</p>
+          </li>
+        </ul>
+
+        <p style="margin-bottom:0.2rem;"><strong>Altri corsi nella sezione <a href="#scuole" data-route="scuole" class="display-inline">SCUOLE</a></strong></p>
+        <p><strong>e a questo <a href="#pezzi-di-formazione" data-route="pezzi-di-formazione" class="display-inline">LINK</a></strong></p>
+
+        
+        <div class="appointment-footer-block">
+          <p>Per programmare e definire un percorso formativo</p>
+          <p>telefonare al <a href="tel:+393402714079" target="_top" style="text-decoration:none;"><strong>340/2714079</strong></a> dalle 14.30 alle 19.30</p>
+          <p>oppure scrivere a <a href="mailto:chiara.godina@gmail.com" target="_top"><strong>chiara.godina@gmail.com</strong></a></p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: sos-studio (SOS STUDIO) -->
+    <section class="spa-view" id="view-sos-studio" data-page="sos-studio" data-title="SOS STUDIO">
+
+      
+      <nav class="subpage-breadcrumb" aria-label="Percorso di navigazione">
+        <div class="breadcrumb-trail">
+          <a href="#home" data-route="home">Home</a>
+          <span>/</span>
+          <a href="#corsi-di-formazione" data-route="corsi-di-formazione">Corsi di formazione</a>
+          <span>/</span>
+          <span>SOS STUDIO</span>
+        </div>
+        <a href="#corsi-di-formazione" data-route="corsi-di-formazione">Torna a Corsi di formazione</a>
+      </nav>
+
+      <h1 style="position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;">SOS Studio</h1>
+      <div style="max-width:480px; margin:0 auto;">
+        <div style="cursor:pointer; margin-bottom:1.75rem;" data-lightbox="sos" data-caption="Locandina del corso SOS Studio — Insegnare ad imparare">
+          <img data-img="img_sos_locandina" style="width:100%; height:auto; display:block;" alt="Locandina del corso SOS Studio — Insegnare ad imparare" />
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:1.5rem;" class="text-dark">
+          <div>
+            <p style="margin:0 0 0.15rem;">Se vuoi visualizzare i risultati del</p>
+            <p style="margin:0 0 0.15rem;"><strong>questionario di gradimento</strong></p>
+            <p style="margin:0 0 0.15rem;">della prima edizione del corso</p>
+            <p style="margin:0;"><a href="./assets/docs/servizi/risultati_questionario_sos_studio.pdf" target="_blank" rel="noopener noreferrer" download class="doc-download-link"><strong>CLICCA QUI PER SCARICARE I RISULTATI (PDF)</strong></a></p>
+          </div>
+          <div aria-hidden="true">
+            <svg width="96" height="68" viewBox="0 0 96 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="6,6 6,62 90,62" stroke="#333333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+              <line x1="26" y1="60" x2="26" y2="38" stroke="#333333" stroke-width="4" />
+              <line x1="46" y1="60" x2="46" y2="30" stroke="#333333" stroke-width="4" />
+              <line x1="66" y1="60" x2="66" y2="22" stroke="#333333" stroke-width="4" />
+              <polyline points="16,42 42,24 56,34 78,12" stroke="#9BB8D3" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+              <polyline points="66,10 80,10 78,24" stroke="#9BB8D3" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: corsi-online (Corsi Online) -->
+    <section class="spa-view" id="view-corsi-online" data-page="corsi-online" data-title="Corsi Online">
+
+      
+      <nav class="subpage-breadcrumb" aria-label="Percorso di navigazione">
+        <div class="breadcrumb-trail">
+          <a href="#home" data-route="home">Home</a>
+          <span>/</span>
+          <a href="#corsi-di-formazione" data-route="corsi-di-formazione">Corsi di formazione</a>
+          <span>/</span>
+          <span>Corsi online</span>
+        </div>
+        <a href="#corsi-di-formazione" data-route="corsi-di-formazione">Torna a Corsi di formazione</a>
+      </nav>
+
+      <h1>CORSI ONLINE</h1>
+      <div style="text-align:center; padding:2rem 0 3rem;">
+        <p style="font-size:1.18rem; margin-bottom:0.3rem;">
+          Per <strong>organizzare</strong> corsi sul metodo di studio <strong>ONLINE individuali</strong> o in <strong>piccolo gruppo</strong>
+        </p>
+        <p style="font-size:1.18rem; margin:0;">
+          scrivete a <a href="mailto:chiara.godina@gmail.com" target="_top" style="text-decoration:none;">chiara.godina@gmail.com</a>
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: materiale-didattico (Materiale Didattico) -->
+    <section class="spa-view" id="view-materiale-didattico" data-page="materiale-didattico" data-title="Materiale Didattico">
+
+      <h1>Materiale didattico</h1>
+
+      <div class="content-narrow text-dark">
+        <p>In questa sezione potete trovare i link per scaricare SLIDE utili per lo studio delle SCIENZE UMANE e di FILOSOFIA al Liceo delle Scienze Umane o al Liceo delle Scienze Umane opz. Economico Sociale (LES)</p>
+
+        <div class="didactic-columns">
+          <div class="didactic-col">
+            <h2>SCIENZE UMANE</h2>
+            <ul class="didactic-list">
+              <li class="didactic-item">
+                <a href="https://www.docsity.com/it/introduzione-alle-scienze-umane-3/10086241/" target="_blank" rel="noopener noreferrer" class="didactic-link" aria-label="Scarica: Introduzione alle Scienze Umane, su Docsity, si apre in una nuova scheda">
+                  <span class="didactic-dl-box" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13"></path><polyline points="7 11 12 16 17 11"></polyline><line x1="5" y1="20" x2="19" y2="20"></line></svg></span><span>- Introduzione alle Scienze Umane</span>
+                </a>
+              </li>
+            </ul>
+
+            <div class="didactic-sublabel">PSICOLOGIA</div>
+            <ul class="didactic-list">
+              <li class="didactic-item">
+                <a href="https://www.docsity.com/it/le-origini-della-psicologia-per-il-biennio-del-liceo-delle-scienze-umane/10086345/" target="_blank" rel="noopener noreferrer" class="didactic-link" aria-label="Scarica: Origini filosofiche e fisiologiche della Psicologia, su Docsity, si apre in una nuova scheda">
+                  <span class="didactic-dl-box" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13"></path><polyline points="7 11 12 16 17 11"></polyline><line x1="5" y1="20" x2="19" y2="20"></line></svg></span><span>- Origini filosofiche e fisiologiche della Psicologia</span>
+                </a>
+              </li>
+              <li class="didactic-item">
+                <a href="https://www.docsity.com/it/le-prime-correnti-psicologiche-introduzione-alla-psicologia-liceo-delle-scienze-umane/10086369/" target="_blank" rel="noopener noreferrer" class="didactic-link" aria-label="Scarica: Le prime correnti psicologiche, su Docsity, si apre in una nuova scheda">
+                  <span class="didactic-dl-box" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13"></path><polyline points="7 11 12 16 17 11"></polyline><line x1="5" y1="20" x2="19" y2="20"></line></svg></span><span>- Le prime correnti psicologiche</span>
+                </a>
+              </li>
+              <li class="didactic-item">
+                <a href="https://www.docsity.com/it/psicologia-dell-apprendimento-per-il-biennio-del-liceo-delle-scienze-umane/10086621/" target="_blank" rel="noopener noreferrer" class="didactic-link" aria-label="Scarica: Apprendimento, su Docsity, si apre in una nuova scheda">
+                  <span class="didactic-dl-box" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13"></path><polyline points="7 11 12 16 17 11"></polyline><line x1="5" y1="20" x2="19" y2="20"></line></svg></span><span>- Apprendimento</span>
+                </a>
+              </li>
+              <li class="didactic-item">
+                <a href="https://www.docsity.com/it/psicologia-della-comunicazione-per-il-biennio-del-liceo-delle-scienze-umane/10086607/" target="_blank" rel="noopener noreferrer" class="didactic-link" aria-label="Scarica: Comunicazione, su Docsity, si apre in una nuova scheda">
+                  <span class="didactic-dl-box" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13"></path><polyline points="7 11 12 16 17 11"></polyline><line x1="5" y1="20" x2="19" y2="20"></line></svg></span><span>- Comunicazione</span>
+                </a>
+              </li>
+              <li class="didactic-item">
+                <a href="https://www.docsity.com/it/dai-bisogni-alla-motivazione-liceo-delle-scienze-umane/10086230/" target="_blank" rel="noopener noreferrer" class="didactic-link" aria-label="Scarica: Bisogni e motivazione, su Docsity, si apre in una nuova scheda">
+                  <span class="didactic-dl-box" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13"></path><polyline points="7 11 12 16 17 11"></polyline><line x1="5" y1="20" x2="19" y2="20"></line></svg></span><span>- Bisogni e motivazione</span>
+                </a>
+              </li>
+              <li class="didactic-item">
+                <a href="https://www.docsity.com/it/pensiero-ed-intelligenza-2/9672306/" target="_blank" rel="noopener noreferrer" class="didactic-link" aria-label="Scarica: Pensiero e Intelligenza, su Docsity, si apre in una nuova scheda">
+                  <span class="didactic-dl-box" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13"></path><polyline points="7 11 12 16 17 11"></polyline><line x1="5" y1="20" x2="19" y2="20"></line></svg></span><span>- Pensiero e Intelligenza</span>
+                </a>
+              </li>
+              <li class="didactic-item">
+                <a href="https://www.docsity.com/it/piaget-epistemologia-genetica-stadi-evolutivi/10086381/" target="_blank" rel="noopener noreferrer" class="didactic-link" aria-label="Scarica: Piaget, su Docsity, si apre in una nuova scheda">
+                  <span class="didactic-dl-box" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13"></path><polyline points="7 11 12 16 17 11"></polyline><line x1="5" y1="20" x2="19" y2="20"></line></svg></span><span>- Piaget</span>
+                </a>
+              </li>
+            </ul>
+
+            <h2 style="margin-top:2rem; margin-bottom:0.75rem;">fisica</h2>
+            <div class="physics-row">
+              <a href="https://www.youtube.com/@DuePigreco" target="_blank" rel="noopener noreferrer" class="physics-channel-link" aria-label="Canale YouTube DuePigreco — Lezioni di fisica, si apre in una nuova scheda">
+                <img data-img="img_duepigreco" alt="Logo canale YouTube DuePigreco — Lezioni di fisica" />
+                <span>https://www.youtube.com/@DuePigreco</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="didactic-col">
+            <h2>FILOSOFIA</h2>
+            <div class="didactic-sublabel" style="margin-top:0;">3° ANNO</div>
+            <ul class="didactic-list">
+              <li class="didactic-item">
+                <a href="https://www.docsity.com/it/introduzione-alla-filosofia/9645028/" target="_blank" rel="noopener noreferrer" class="didactic-link" aria-label="Scarica: Introduzione alla Filosofia, su Docsity, si apre in una nuova scheda">
+                  <span class="didactic-dl-box" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13"></path><polyline points="7 11 12 16 17 11"></polyline><line x1="5" y1="20" x2="19" y2="20"></line></svg></span><span>- Introduzione alla Filosofia</span>
+                </a>
+              </li>
+            </ul>
+
+            <div class="didactic-sublabel">4° ANNO</div>
+            <ul class="didactic-list">
+              <li class="didactic-item">
+                <a href="https://www.docsity.com/it/introduzione-alla-filosofia-dell-umanesimo-e-rinascimento/9645205/" target="_blank" rel="noopener noreferrer" class="didactic-link" aria-label="Scarica: Introduzione alla filosofia dell'Umanesimo e Rinascimento, su Docsity, si apre in una nuova scheda">
+                  <span class="didactic-dl-box" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13"></path><polyline points="7 11 12 16 17 11"></polyline><line x1="5" y1="20" x2="19" y2="20"></line></svg></span><span>- Introduzione alla filosofia dell'Umanesimo e Rinascimento</span>
+                </a>
+              </li>
+              <li class="didactic-item">
+                <a href="https://www.docsity.com/it/il-pensiero-di-cusano/9645016/" target="_blank" rel="noopener noreferrer" class="didactic-link" aria-label="Scarica: Cusano, su Docsity, si apre in una nuova scheda">
+                  <span class="didactic-dl-box" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13"></path><polyline points="7 11 12 16 17 11"></polyline><line x1="5" y1="20" x2="19" y2="20"></line></svg></span><span>- Cusano</span>
+                </a>
+              </li>
+              <li class="didactic-item">
+                <a href="https://www.docsity.com/it/il-pensiero-di-cartesio-6/9644998/" target="_blank" rel="noopener noreferrer" class="didactic-link" aria-label="Scarica: Cartesio, su Docsity, si apre in una nuova scheda">
+                  <span class="didactic-dl-box" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13"></path><polyline points="7 11 12 16 17 11"></polyline><line x1="5" y1="20" x2="19" y2="20"></line></svg></span><span>- Cartesio</span>
+                </a>
+              </li>
+              <li class="didactic-item">
+                <a href="https://www.docsity.com/it/galileo-galilei-da-aristotele-al-metodo-galileiano/9644986/" target="_blank" rel="noopener noreferrer" class="didactic-link" aria-label="Scarica: Galileo Galilei, su Docsity, si apre in una nuova scheda">
+                  <span class="didactic-dl-box" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13"></path><polyline points="7 11 12 16 17 11"></polyline><line x1="5" y1="20" x2="19" y2="20"></line></svg></span><span>- Galileo Galilei</span>
+                </a>
+              </li>
+              <li class="didactic-item">
+                <a href="https://www.docsity.com/it/il-pensiero-di-francesco-bacone/9644957/" target="_blank" rel="noopener noreferrer" class="didactic-link" aria-label="Scarica: Bacone, su Docsity, si apre in una nuova scheda">
+                  <span class="didactic-dl-box" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13"></path><polyline points="7 11 12 16 17 11"></polyline><line x1="5" y1="20" x2="19" y2="20"></line></svg></span><span>- Bacone</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: chi-sono (Chi sono) -->
+    <section class="spa-view" id="view-chi-sono" data-page="chi-sono" data-title="Chi sono">
+
+      <h1>CHIARA GODINA</h1>
+
+      <div class="about-top-grid">
+        <div class="white-frame-photo" data-lightbox="about" data-caption="Chiara Godina.JPG">
+          <img data-img="img_chiara_portrait" alt="Chiara Godina.JPG" />
+        </div>
+        <div>
+          <p style="margin-bottom:0.25rem;">Laureata in <span class="display-inline">Scienze dell'educazione</span>, da più di vent'anni mi occupo di <span class="display-inline">educazione, formazione, progettazione educativa</span>.</p>
+          <p style="margin-bottom:0;">Sono moglie e mamma di tre figli.</p>
+        </div>
+      </div>
+
+      <div class="saint-exupery-quote">
+        <p>L'essenziale è invisibile agli occhi.</p>
+        <p>Non si vede bene che col cuore.</p>
+        <p>(Antoine De Saint Exupery)</p>
+      </div>
+
+      <div class="cv-download-bar">
+        <p style="margin:0 0 0.4rem; font-weight:600; color:var(--brand-primary); font-family:'Marcellus',Georgia,serif; text-transform:uppercase; font-size:0.95rem;">Download Documenti e Allegati</p>
+        <p style="margin:0; font-size:0.95rem;">
+          <a href="./assets/docs/curriculum/curriculum_vitae_chiara_godina.pdf" target="_blank" rel="noopener noreferrer" download class="doc-download-link">Scarica Curriculum Vitae (PDF)</a> &nbsp;|&nbsp; 
+          <a href="./assets/docs/curriculum/curriculum_vitae_chiara_godina_allegato.pdf" target="_blank" rel="noopener noreferrer" download class="doc-download-link">Scarica Allegato B (PDF)</a>
+        </p>
+      </div>
+
+      <div class="story-section-wrap">
+        <h2>La mia storia professionale</h2>
+        <p style="margin-bottom:0.2rem;">Per cercare di ricostruire i pezzi della mia storia professionale mi è sembrato di andare a rovistare nella <span class="display-inline">"borsa di Mary Poppins"</span> dove ho trovato cose strane, impensabili, bizzarre...</p>
+        <p style="margin-bottom:0.2rem;">Pezzi di vita che si sono trasformati in incontri, persone, progetti, percorsi, immagini, storie, libri...</p>
+        <p><strong>Ogni pezzetto, anche il più piccolo, mi ha resa quella che sono...</strong></p>
+
+        <nav class="story-links-grid" aria-label="La mia storia professionale">
+          <a href="#pezzi-di-formazione" data-route="pezzi-di-formazione" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Pezzi di formazione</span>
+          </a>
+          <a href="#progetti" data-route="progetti" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Progetti</span>
+          </a>
+          <a href="#vita-nelle-scuole" data-route="vita-nelle-scuole" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Vita nelle scuole</span>
+          </a>
+          <a href="#articoli-e-pubblicazioni" data-route="articoli-e-pubblicazioni" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Articoli e pubblicazioni</span>
+          </a>
+          <a href="#storie-in-rete" data-route="storie-in-rete" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Storie in rete</span>
+          </a>
+          <a href="#curriculum-vitae" data-route="curriculum-vitae" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Curriculum Vitae</span>
+          </a></nav>
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: curriculum-vitae (Curriculum Vitae) -->
+    <section class="spa-view" id="view-curriculum-vitae" data-page="curriculum-vitae" data-title="Curriculum Vitae">
+
+      
+      <nav class="subpage-breadcrumb" aria-label="Percorso di navigazione">
+        <div class="breadcrumb-trail">
+          <a href="#home" data-route="home">Home</a>
+          <span>/</span>
+          <a href="#chi-sono" data-route="chi-sono">Chi sono</a>
+          <span>/</span>
+          <span>Curriculum Vitae</span>
+        </div>
+        <a href="#chi-sono" data-route="chi-sono">Torna a Chi sono</a>
+      </nav>
+
+      <h1>CHIARA GODINA</h1>
+
+      <div class="about-top-grid">
+        <div class="white-frame-photo" data-lightbox="profilo" data-caption="Chiara Godina.JPG">
+          <img data-img="img_chiara_portrait" alt="Chiara Godina.JPG" />
+        </div>
+        <div>
+          <p style="margin-bottom:0.25rem;">Dopo aver conseguito nel 1997 il diploma universitario di <span class="display-inline">Assistente Sociale</span>, mi sono laureata in <span class="display-inline">Scienze dell'educazione</span> esattamente 10 anni dopo, nel 2007.</p>
+          <p style="margin-bottom:0.25rem;">Da più di vent'anni mi occupo di <span class="display-inline">educazione, formazione, progettazione educativa, consulenza in ambito sociale</span>.</p>
+          <p style="margin-bottom:0;">Sono moglie e mamma di tre figli.</p>
+        </div>
+      </div>
+
+      <div class="saint-exupery-quote">
+        <p>L'essenziale è invisibile agli occhi.</p>
+        <p>Non si vede bene che col cuore.</p>
+        <p>(Antoine De Saint Exupery)</p>
+      </div>
+
+      <div class="cv-download-bar">
+        <p style="margin:0 0 0.4rem; font-weight:600; color:var(--brand-primary); font-family:'Marcellus',Georgia,serif; text-transform:uppercase; font-size:0.95rem;">Download Documenti e Allegati</p>
+        <p style="margin:0; font-size:0.95rem;">
+          <a href="./assets/docs/curriculum/curriculum_vitae_chiara_godina.pdf" target="_blank" rel="noopener noreferrer" download class="doc-download-link">Scarica Curriculum Vitae (PDF)</a> &nbsp;|&nbsp; 
+          <a href="./assets/docs/curriculum/curriculum_vitae_chiara_godina_allegato.pdf" target="_blank" rel="noopener noreferrer" download class="doc-download-link">Scarica Allegato B (PDF)</a>
+        </p>
+      </div>
+
+      <div class="story-section-wrap">
+        <h2>La mia storia professionale</h2>
+        <p style="margin-bottom:0.2rem;">Per cercare di ricostruire i pezzi della mia storia professionale mi è sembrato di andare a rovistare nella <span class="display-inline">"borsa di Mary Poppins"</span> dove ho trovato cose strane, impensabili, bizzarre...</p>
+        <p style="margin-bottom:0.2rem;">Pezzi di vita che si sono trasformati in incontri, persone, progetti, percorsi, immagini, storie, libri...</p>
+        <p><strong>Ogni pezzetto, anche il più piccolo, mi ha reso quella che sono...</strong></p>
+
+        <nav class="story-links-grid" aria-label="La mia storia professionale">
+          <a href="#pezzi-di-formazione" data-route="pezzi-di-formazione" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Pezzi di formazione</span>
+          </a>
+          <a href="#progetti" data-route="progetti" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Progetti</span>
+          </a>
+          <a href="#vita-nelle-scuole" data-route="vita-nelle-scuole" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Vita nelle scuole</span>
+          </a>
+          <a href="#articoli-e-pubblicazioni" data-route="articoli-e-pubblicazioni" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Articoli e pubblicazioni</span>
+          </a>
+          <a href="#storie-in-rete" data-route="storie-in-rete" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Storie in rete</span>
+          </a>
+          <a href="#curriculum-vitae" data-route="curriculum-vitae" class="story-link-item active">
+            <img data-img="icon_arrow" alt="" />
+            <span>Curriculum Vitae</span>
+          </a></nav>
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: formazione (Formazione) -->
+    <section class="spa-view" id="view-formazione" data-page="formazione" data-title="Formazione">
+
+      
+      <nav class="subpage-breadcrumb" aria-label="Percorso di navigazione">
+        <div class="breadcrumb-trail">
+          <a href="#home" data-route="home">Home</a>
+          <span>/</span>
+          <a href="#chi-sono" data-route="chi-sono">Chi sono</a>
+          <span>/</span>
+          <span>Formazione</span>
+        </div>
+        <a href="#chi-sono" data-route="chi-sono">Torna a Chi sono</a>
+      </nav>
+
+      <h1 style="margin-bottom:0.25rem;">CORSI E PERCORSI DI FORMAZIONE</h1>
+      <h3 style="text-align:center; margin-bottom:2rem;">pensati, progettati e realizzati dal 2000 ad oggi</h3>
+
+      <div class="content-narrow">
+        <p>Dal <span class="display-inline">2000</span> al <span class="display-inline">2010</span> ho tenuto innumerevoli <span class="display-inline">corsi</span> e <span class="display-inline">incontri di formazione</span> rivolti ad adolescenti, giovani, educatori, genitori sulle seguenti tematiche:</p>
+
+        <div class="formazione-row-1">
+          <ul class="font-display" style="text-transform:uppercase; font-size:0.98rem; margin:0;">
+            <li>Essere educatore</li>
+            <li>La relazione educativa</li>
+            <li>L'animatore in oratorio</li>
+            <li>Teorie e tecniche della creatività e dell'animazione</li>
+            <li>Gioco ed educazione</li>
+            <li>Gestione ed organizzazione di un gruppo di adolescenti</li>
+            <li>La gestione della leadership in gruppi di adolescenti</li>
+            <li>Programmazione e organizzazione educativa</li>
+            <li>Rischi ed opportunità dei new media nell'educazione</li>
+            <li>Genitori e figli adolescenti</li>
+          </ul>
+          <div class="white-frame-photo" data-lightbox="formazione" data-caption="Corsi e percorsi di formazione 2000-2010">
+            <img data-img="img_form_valigetta" alt="Corsi e percorsi di formazione 2000-2010" />
+          </div>
+        </div>
+
+        <div class="formazione-row-2">
+          <div class="white-frame-photo" data-lightbox="formazione" data-caption="Formazione nell'ambito educativo e sportivo 2010-2016">
+            <img data-img="img_form_sport" alt="Formazione nell'ambito educativo e sportivo 2010-2016" />
+          </div>
+          <div>
+            <p style="margin-bottom:0.35rem;">Dal <span class="display-inline">2010</span> al <span class="display-inline">2016</span> i <span class="display-inline">corsi</span> e gli <span class="display-inline">incontri di formazione</span>, soprattutto nell'ambito <span class="display-inline">educativo e sportivo</span>, hanno rappresentato la quotidianità del mio lavoro, in termini di <span class="display-inline">progettazione, organizzazione, supervisione e docenza.</span></p>
+            <p>E' impossibile per me ricostruire tutti i luoghi in cui sono stata, le persone che ho incontrato, formato, educato... ancora più difficile è riuscire a mettere nero su bianco tutti i temi affrontati, i lavori di gruppo effettuati, i laboratori didattici ed educativi organizzati e gestiti.</p>
+            <p><strong>Cliccando <a href="#pezzi-di-formazione" data-route="pezzi-di-formazione">QUI</a></strong> potete vedere una piccola parte di quello che sono riuscita a ricostruire: alcuni <a href="#pezzi-di-formazione" data-route="pezzi-di-formazione" class="display-inline">PEZZI DI FORMAZIONE!</a></p>
+          </div>
+        </div>
+
+        <nav class="story-links-grid" aria-label="La mia storia professionale">
+          <a href="#pezzi-di-formazione" data-route="pezzi-di-formazione" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Pezzi di formazione</span>
+          </a>
+          <a href="#progetti" data-route="progetti" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Progetti</span>
+          </a>
+          <a href="#vita-nelle-scuole" data-route="vita-nelle-scuole" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Vita nelle scuole</span>
+          </a>
+          <a href="#articoli-e-pubblicazioni" data-route="articoli-e-pubblicazioni" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Articoli e pubblicazioni</span>
+          </a>
+          <a href="#storie-in-rete" data-route="storie-in-rete" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Storie in rete</span>
+          </a>
+          <a href="#curriculum-vitae" data-route="curriculum-vitae" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Curriculum Vitae</span>
+          </a></nav>
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: pezzi-di-formazione (Pezzi di Formazione) -->
+    <section class="spa-view" id="view-pezzi-di-formazione" data-page="pezzi-di-formazione" data-title="Pezzi di Formazione">
+
+      
+      <nav class="subpage-breadcrumb" aria-label="Percorso di navigazione">
+        <div class="breadcrumb-trail">
+          <a href="#home" data-route="home">Home</a>
+          <span>/</span>
+          <a href="#chi-sono" data-route="chi-sono">Chi sono</a>
+          <span>/</span>
+          <span>Pezzi di formazione</span>
+        </div>
+        <a href="#chi-sono" data-route="chi-sono">Torna a Chi sono</a>
+      </nav>
+
+      <h1 style="margin-bottom:0.2rem;">INCONTRI E CORSI DI FORMAZIONE</h1>
+      <h2 style="text-align:center; margin-bottom:0.2rem;">WORK IN PROGRESS</h2>
+      <h3 style="text-align:center; margin-bottom:1.5rem;">Pagina in continua costruzione!</h3>
+
+      <div class="content-narrow">
+        <p style="text-align:center; font-style:italic; margin-bottom:1.75rem;">
+          In questa pagina potete trovare un elenco lunghissimo, ma non esaustivo e nemmeno completo,<br />
+          di tanti corsi di formazione e di incontri da me tenuti dal 2000 ad oggi!
+        </p>
+
+        <div class="timeline-filter-bar">
+          <label for="timelineSearchPezzi" class="timeline-search-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span>Cerca nell'elenco (2000–2024):</span>
+          </label>
+          <input type="search" id="timelineSearchPezzi" class="timeline-search-input" placeholder="Filtra per anno, città, scuola o parola chiave..." />
+        </div>
+
+        <div class="timeline-accordion-container">
+          
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2000 - 2008</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Diocesi di Milano, Gennaio/Dicembre - Corsi di formazione per educatori ed animatori di Oratorio su tematiche inerenti l'animazione, la creatività, il gioco e la relazione educativa</p><p class="event-line">Capizzone, Giugno - Corsi di formazione per animatori d'oratorio</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2004</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Palazzolo, novembre 2004 - Essere educatori in equipe</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2005</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Carugate, 19 novembre 2005 - Il cammino del gruppo animatori</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2006</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Milano, 3 marzo 2006 - L'animatore, i ragazzi e l'oratorio</p><p class="event-line">Lurago Marinone, 30 marzo 2006 - L'animatore</p><p class="event-line">Lurago Marinone, 6 aprile 2006 - Il gioco e l'animazione</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2007</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Milano, 14 febbraio 2007 - Tra complicità e conflitto</p><p class="event-line">Milano, 22 marzo 2007 - Educare all'affettività</p><p class="event-line">Milano, 21 aprile 2007 - Musica e animazione</p><p class="event-line">Sesto S. Giovanni, 10 maggio 2007 - Corso animatori d'oratorio</p><p class="event-line">Castiglione d'Adda, 12 Maggio 2007 - Animazione a tempo di musica</p><p class="event-line">Milano, maggio 2007 - Tra musica ed animazione</p><p class="event-line">Arcore, 1 febbraio 2007 - Il cammino del gruppo animatori</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2008</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Robbiate, 7 febbraio 2008 - Chi fa da sé non fa per tre! Essere educatori in Equipe.</p><p class="event-line">Milano, 13 febbraio 2008 - Educare all’amore, come trasmissione della fede</p><p class="event-line">Lecco, 28 e 28 marzo 2008 - Noi, i bambini e i new media (Corso di formazione per catechiste)</p><p class="event-line">Ballabio, 16 aprile 2008 - La relazione con gli adolescenti <a href="http://www.comune.ballabio.lc.it/zf/index.php/servizi-aggiuntivi/index/index/idtesto/1417" target="_blank" rel="noopener noreferrer">Leggi tutto</a></p><p class="event-line">Bresso, 11 maggio 2008 - Tifo in famiglia (per genitori a bordo campo!)</p><p class="event-line">Somma Lombardo, 24 settembre 2008 - Il valore educativo del gioco in oratorio</p><p class="event-line">Milano, 15 ottobre 2008 - Quando meno te l’aspetti… (Stanza genitori - Scuola Infanzia)</p><p class="event-line">Milano, 12 novembre 2008</p><p class="event-line">Milano, 10 dicembre 2008 - Tutto mio… Vuoi giocare con me? (Stanza genitori - Scuola Infanzia)</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2009</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Ad Aprile è nata la mia terza figlia... tutto il mio tempo è stato dedicato a lei e agli altri miei due figli... gli incontri di formazione e le consulenze fatte durante l'anno sono state sporadiche.</p><p class="event-line">Milano, 11 marzo 2009 - Tra “capricci” e “sgridate” (Stanza genitori - Scuola Infanzia)</p><p class="event-line">Milano, 1 aprile 2009 - Ma dove corri? Fermati e ascolta… (Stanza genitori - Scuola Infanzia)</p><p class="event-line">Canzo, 7 giugno 2009 - Laboratori di creatività (corso di formazione per animatori di oratorio)</p><p class="event-line">Milano, 8 ottobre 2009 - Corso per responsabili del gruppo animatori</p><p class="event-line">Milano, 14 ottobre 2009 - Mastro Ciliegia... la responsabilità di "far crescere" (Stanza genitori - Scuola Infanzia) <a href="./assets/docs/stanza_genitori/stanza_genitori_2009_10_14_mastro_ciliegia.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Leggi l'articolo (PDF)</a></p><p class="event-line">Milano, 11 novembre 2009 - La Fata Turchina... Educare per perdonare (Stanza genitori - Scuola Infanzia) <a href="./assets/docs/stanza_genitori/stanza_genitori_2009_11_11_fata_turchina.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Leggi l'articolo (PDF)</a></p><p class="event-line">Milano, 9 dicembre 2009 - Mastro Geppetto: la lunga attesa (Stanza genitori - Scuola Infanzia) <a href="./assets/docs/stanza_genitori/stanza_genitori_2009_12_09_mastro_geppetto.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Leggi l'articolo (PDF)</a></p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2010</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Milano, 13 gennaio 2010 - Il gatto e la volpe: tra inganni e debolezze (Stanza genitori - Scuola Infanzia) <a href="./assets/docs/stanza_genitori/stanza_genitori_2010_01_13_gatto_e_volpe.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Leggi l'articolo (PDF)</a></p><p class="event-line">Milano, 28 gennaio 2010 - Le sfide dell'educare</p><p class="event-line">Milano, 7 febbraio 2010 - Mettiamoci in gioco (per genitori di bambini 0/3 anni)</p><p class="event-line">Milano, 10 febbraio 2010 - Pinocchio: Aiutooooo! (Stanza genitori - Scuola Infanzia) <a href="./assets/docs/stanza_genitori/stanza_genitori_2010_02_10_pinocchio_aiutooooo.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Leggi l'articolo (PDF)</a></p><p class="event-line">Milano, 14 aprile 2010 - Mangiafuoco... Brutto ma buono (Stanza genitori - Scuola Infanzia) <a href="./assets/docs/stanza_genitori/stanza_genitori_2010_04_14_mangiafuoco.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Leggi l'articolo (PDF)</a></p><p class="event-line">Lissone, 18 febbraio 2010 - Elementi di psicopedagogia nella preadolescenza</p><p class="event-line">Monza, 3 aprile 2010 - La figura dell'educatore in oratorio</p><p class="event-line">Arnate, 16 aprile 2010 - Sport: sfida educativa</p><p class="event-line">Sesto San Giovanni, 26 aprile 2010 - Psicologia e dinamiche di gruppo: la gestione dello spogliatoio</p><p class="event-line">Monza, 22 maggio 2010 - La creatività a servizio dell'educazione</p><p class="event-line">Sedriano, 8 giugno 2010 - Educare con lo sport</p><p class="event-line">Salsomaggiore, 6 giugno 2010 - La qualità in rete</p><p class="event-line">Sesto San Giovanni, 25 settembre 2010 - L’importanza del gioco nel rapporto tra genitori e figli</p><p class="event-line">Milano, 13 ottobre 2010 - Come lasciare tutti a bocca aperta (Stanza genitori - Scuola Infanzia) <a href="./assets/docs/stanza_genitori/stanza_genitori_2010_10_13_bocca_aperta.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Leggi l'articolo (PDF)</a></p><p class="event-line">Milano, 16 ottobre 2010 - La comunicazione in famiglia</p><p class="event-line">Milano, 25 ottobre 2010 - Arbitrare questione di stress o stile</p><p class="event-line">Milano, 26 ottobre 2010 - Elementi di psicopedagogia sportiva nella preadolescenza</p><p class="event-line">Monza, 28 ottobre 2010 - Elementi di psicopedagogia sportiva nella preadolescenza</p><p class="event-line">Cesate, 29 ottobre 2010 - Uno sport per educare o educare con lo sport</p><p class="event-line">Milano, 5 novembre 2010 - La gestione della conflittualità sportiva</p><p class="event-line">Milano,  10 novembre 2010 - Il trucco c’è ma non si vede (Stanza genitori - Scuola Infanzia) <a href="./assets/docs/stanza_genitori/stanza_genitori_2010_11_10_trucco_c_e.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Leggi l'articolo (PDF)</a></p><p class="event-line">Monza, 15 novembre 2010 - Leadership e gestione del gruppo</p><p class="event-line">Milano, 1 dicembre 2010 - Cosa racconto? (Stanza genitori - Scuola Infanzia) <a href="./assets/docs/stanza_genitori/stanza_genitori_2010_12_01_cosa_racconto.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Leggi l'articolo (PDF)</a></p><p class="event-line">Milano, 15 dicembre 2010 – Chi suona la campanella? (Stanza genitori - Scuola Infanzia)</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2011</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Monza, 20 gennaio 2011 - Arbitrare questione di stress o stile</p><p class="event-line">Cesano Maderno, 23 gennaio 2011 - Allenare per educare</p><p class="event-line">Carnago, 24 gennaio 2011 - Genitori a bordo campo</p><p class="event-line">Rho, 31 gennaio 2011 - Elementi di psicopedagogia sportiva nella preadolescenza</p><p class="event-line">Sesto San Giovanni, 14 febbraio 2011 - Allenare nel progetto CSI</p><p class="event-line">Casciago, 19 febbraio 2011 - Quando allenare è educare</p><p class="event-line">Seregno, 20 febbraio 2011 - Organizzazione e lavoro in gruppo</p><p class="event-line">Maggianico, 21 febbraio 2011 - La relazione educativa: risorse e prospettive</p><p class="event-line">Sesto San Giovanni, 21 febbraio 2011 - Elementi di psicopedagogia sportiva nella preadolescenza</p><p class="event-line">Milano, 9 marzo 2011 - L’accesa discussione (Stanza genitori - Scuola Infanzia) <a href="./assets/docs/stanza_genitori/stanza_genitori_2011_03_09_accesa_discussione.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Leggi l'articolo (PDF)</a></p><p class="event-line">Milano, Marzo - Maggio 2011 - Corso di formazione per volontari in partenza per una missione in Albania</p><p class="event-line">Milano, 21 marzo 2011 - La figura dell'animatore</p><p class="event-line">Monza, 3 aprile 2011 - La motivazione per essere animatore</p><p class="event-line">Milano, 13 aprile 2011 - I nostri tempi (Stanza genitori - Scuola Infanzia) <a href="./assets/docs/stanza_genitori/stanza_genitori_2011_04_13_nostri_tempi.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Leggi l'articolo (PDF)</a></p><p class="event-line">Milano, 11 maggio 2011 - Insieme è… (Stanza genitori - Scuola Infanzia) <a href="./assets/docs/stanza_genitori/stanza_genitori_2011_05_11_insieme_e.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Leggi l'articolo (PDF)</a></p><p class="event-line">Monza, 22 maggio 2011 - Creatività e animazione in oratorio</p><p class="event-line">Milano, 8 giugno 2011 - E vissero tutti felici e contenti (forse)… (Stanza genitori - Scuola Infanzia) <a href="./assets/docs/stanza_genitori/stanza_genitori_2011_06_08_vissero_felici.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Leggi l'articolo (PDF)</a></p><p class="event-line">Castione della Presolana, 10 settembre 2011 - Stage arbitri di pallavolo Csi Milano - Tavola rotonda</p><p class="event-line">Milano, 24 settembre 2011 - Uno sport per vivere</p><p class="event-line">Gessate, 20 ottobre 2011 - Dinamiche di gruppo e leadership</p><p class="event-line">Milano, 26 ottobre 2011 - Alla scoperta di sè e degli altri</p><p class="event-line">Milano, 10 novembre 2011 - Elementi di psicopedagogia nella preadolescenza</p><p class="event-line">Milano, 14 novembre 2011 - La gestione delle relazioni e della conflittualità</p><p class="event-line">Milano, 25 novembre 2011 - Uno sport da vivere</p><p class="event-line">Milano, 1 dicembre 2011 - Dall’amico immaginario, all’amico vero (Stanza genitori - Scuola Infanzia)</p><p class="event-line">Cormano, 3 dicembre 2011 - Mettiamoci in gioco: società sportive e pastorale giovanile in dialogo</p><p class="event-line">Milano, 17 dicembre 2011 - Didattica e valutazione. La valutazione come strumento di rinforzo degli apprendimenti (Corso di formazione per formatori)</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2012</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Cesano Maderno, 23 gennaio 2012 - Csi a casa tua</p><p class="event-line">Guanzate, 25 gennaio 2012 - Educare con lo sport</p><p class="event-line">Brusaporto, 29 gennaio 2012 - Bambini tra mamme e papà: le coerenze educative possibili! (Scuola Infanzia)</p><p class="event-line">Milano, 16 febbraio 2012 - Dinamiche di gruppo e leadership</p><p class="event-line">Seveso, 20 febbraio 2012 - Elementi di psicopedagogia sportiva</p><p class="event-line">Milano, 22 febbraio 2012 - Con gli occhi di un bambino (Stanza genitori - Scuola Infanzia)</p><p class="event-line">Rho, 8 marzo 2012 - Arbitrare questione di stress o stile</p><p class="event-line">Piamborno, 13 marzo 2012 - Uno sport per crescere</p><p class="event-line">Milano, 24 marzo 2012 - Le reti nello sport</p><p class="event-line">Brusaporto, 25 marzo 2012 - La coppia: coerenze in costruzione (Scuola Infanzia)</p><p class="event-line">Milano, 30 marzo 2012 - La sfida dell'educare: reti e sport</p><p class="event-line">Triuggio, 17 marzo e 21 aprile 2012 (pomeriggio) - Formazione team leader per VII giornata mondiale delle Famiglie (Diocesi di Milano)</p><p class="event-line">Milano, 21 aprile 2012 (mattina) - Sport a misura di bambino. Il nuovo Giocabimbi</p><p class="event-line">Sesto San Giovanni, 26 aprile 2012 - Elementi di psicopedagogia nella preadolescenza</p><p class="event-line">Milano, 4 maggio 2012 - La gestione della conflittualità sportiva</p><p class="event-line">Milano, 5 maggio 2012 - L’uso dei video negli incontri formativi, per formatori ed educatori</p><p class="event-line">Milano, 1 giugno 2012 - Piccoli al centro: formazione educatori camp estivi</p><p class="event-line">Castione della Presolana, 7 - 9 settembre 2012 - Stage arbitri di pallavolo</p><p class="event-line">Milano, 4 ottobre 2012 - Educare i bambini allo sport</p><p class="event-line">Milano, 22 ottobre 2012 - In Rete: come mettere il bambino al centro</p><p class="event-line">Milano, 24 ottobre 2012 - Arbitrare: una scelta importante</p><p class="event-line">Milano, 25 ottobre 2012 -  In Rete: come mettere il bambino al centro</p><p class="event-line">Milano, 29 ottobre 2012 - Fare sport: tra tradizione ed innovazione</p><p class="event-line">Milano, 12 novembre 2012 - La gestione della conflittualità sportiva</p><p class="event-line">Seregno, 15 novembre 2012 - Educare i bambini allo sport</p><p class="event-line">Milano, 26 novembre 2012 - Educare i bambini allo sport</p><p class="event-line">Chieti, 30 novembre/2 dicembre 2012 - Corso di formazione per educatori CSI in oratorio Link</p><p class="event-line">Milano, 3 dicembre 2012 - La gestione dello stress</p><p class="event-line">Seregno, 6 dicembre 2012 - In Rete: come mettere il bambino al centro</p><p class="event-line">Milano, 10 dicembre 2012 - La gestione dello spogliatoio</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2013</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Gleno, gennaio 2013 - Educare allo sport</p><p class="event-line">Calco, 7 e 22 febbraio 2013 - Il bello di essere nonni  Link</p><p class="event-line">Rho, 3 marzo 2013 - Educare i bambini allo sport</p><p class="event-line">Milano, 6 marzo 2013 - Comunicazione interna ed esterna alla società sportiva</p><p class="event-line">Milano, 4 aprile 2013 - Fare sport: tra tradizione e innovazione</p><p class="event-line">Cornaredo, 29 aprile 2013 - Il CSI. Lo stile di un’appartenenza tra allenare, dirigere, educare</p><p class="event-line">Milano, 15 maggio 2013 - I baci non durano, saper cucinare sì: maschile e femminile nella relazione di coppia (Parrocchia Curato d'Ars)</p><p class="event-line">Milano, 20 maggio 2013 - Conflittualità sportiva dentro e fuori dal campo</p><p class="event-line">Bellagio, 22 settembre 2013 - L'arbitro e il gruppo</p><p class="event-line">Milano, 10 ottobre 2013 - Arbitro: una scelta importante. Le regole per amore dello sport</p><p class="event-line">Pogliano Milanese,  21 ottobre 2013 -  Educatori sportivi CSI: competenza, professionalità, passione educativa</p><p class="event-line">Milano, 2 dicembre 2013 - In rete: come mettere il bambino al centro e la proposta “Giocabimbi”</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2014</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Sesto San Giovanni, 24 febbraio 2014 - Quando allenare è educare</p><p class="event-line">Milano,15-16 marzo 2014, 25 maggio - Formazione volontari CSI per il Mondo</p><p class="event-line">Milano, 1 aprile 2014 – Allenare all’agonismo educativo</p><p class="event-line">Milano, 5 maggio 2014 - Formazione osservatori arbitrali</p><p class="event-line">Brugherio, 28 maggio 2014 - Istituto Clerici Brugherio "Laboratori sulla legalità sportiva"</p><p class="event-line">Costamasnaga, 3 novembre 2014 - Educare con lo sport</p><p class="event-line">Garbagnate Milanese, 12 novembre 2014 - Ruoli e funzioni nella società sportiva</p><p class="event-line">Milano, 24 ottobre 2014 - Arbitro una scelta importante (Ist. De Amicis)</p><p class="event-line">Pioltello (Istituto Schiapparelli Gramsci), 17 novembre 2014 – Le regole per amore dello sport</p><p class="event-line">Pioltello (Istituto Schiapparelli Gramsci), 3 dicembre 2014 – Le regole per amore dello sport</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2015</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Robbiate, 26 gennaio 2015 - Oratorio e famiglia: come coniugare le due realtà</p><p class="event-line">Segrate, 7 febbraio 2015 - Agonismo educativo</p><p class="event-line">Lentate sul Seveso, 10 marzo 2015 - Il CSI e la società sportiva. Formazione dirigenti</p><p class="event-line">Seregno, 25 marzo 2015 - Il CSI e la società sportiva. Formazione dirigenti</p><p class="event-line">Milano, 25 aprile 2015 - La relazione educativa</p><p class="event-line">Milano, 26 aprile 2015 - Laboratori interattivi di animazione, sport ed educazione</p><p class="event-line">Pogliano Milanese, 10 aprile 2015 - Il CSI e la società sportiva. Formazione dirigenti</p><p class="event-line">Abbiategrasso, 9 maggio 2015 - Educatori sportivi</p><p class="event-line">Abbiategrasso, 9 maggio 2015 - Fare sport tra innovazione e tradizione</p><p class="event-line">Milano, 20 maggio 2015 - Specialmente Allenatore</p><p class="event-line">Bussero, 25 maggio 2015 - In rete: come mettere i bambini al centro</p><p class="event-line">Sesto San Giovanni, 26 maggio 2015 - In rete: come mettere i bambini al centro</p><p class="event-line">Milano, 27 maggio 2015 - Laboratorio didattico sulla disabilità</p><p class="event-line">Sirmione, settembre 2015 - Cultura sportiva nel CSI. Stage formativo per i quadri CSI. Link</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>Settembre 2015 - Giugno 2016</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">In questi mesi non ho tenuto corsi di formazione, se non in modo occasionale, in quanto ho svolto in maniera continuativa l'attività di coordinamento, supervisione e formazione del team di formazione del Csi Milano, formato allora da circa 60 docenti e consulenti.</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>Settembre 2016</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Da settembre 2016 ho iniziato a dedicarmi a tempo pieno all'insegnamento nella scuola superiore di secondo grado, mettendo da parte, per quanto mi è stato possibile, l'attività di formazione e consulenza, motivo per cui gli incontri formativi da me tenuti dopo tale data sono stati pochissimi!</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2017</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Montevecchia,14 ottobre 2017  - Il gioco delle relazioni (gruppo educatori di Gallarate)</p><p class="event-line">Gallarate, dicembre 2017 - Come comunicare in modo efficace</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2018</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Monticello B.za, 19 e 22 giugno - Insegnare ad imparare (percorso formativo per docenti) c/o IISS Greppi</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2019</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Merate, Ottobre - Insegnare ad imparare (percorso formativo per docenti) c/o Liceo MG Agnesi</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2020</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Merate, Febbraio - Corso sul Metodo di Studio per studenti classi prime c/o Liceo MG Agnesi</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2021</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Merate, Febbraio/Marzo - Corso sul Metodo di Studio per studenti classi prime c/o Liceo MG Agnesi</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2022</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Seregno, Ottobre/Novembre - Corso sul Metodo di Studio per docenti c/o Liceo Parini Seregno</p><p class="event-line">Capiago Intimiano - "Due giorni formazione per sacerdoti ed educatori" della Diocesi di Milano</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2023</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Seregno, Febbraio/Marzo - Corso sul Metodo di Studio per studenti classi prime c/o Liceo Parini Seregno</p>
+          </div>
+        </div>
+        <div class="year-block">
+          <button type="button" class="year-heading-btn" aria-expanded="true">
+            <span>2024</span>
+          </button>
+          <div class="year-events">
+            <p class="event-line">Calco, gennaio - Incontro "Dall’IO al NOI. Accettazione di sé e rispetto per gli altri in un’ottica di fiducia reciproca in famiglia e con gli amici reali e virtuali" per genitori</p><p class="event-line">Barzanò, gennaio - Insegnare ad imparare (percorso formativo per genitori e studenti universitari)</p><p class="event-line">---</p>
+          </div>
+        </div>
+        </div>
+
+        <div style="margin-top:2.5rem;">
+          <nav class="story-links-grid" aria-label="La mia storia professionale">
+          <a href="#pezzi-di-formazione" data-route="pezzi-di-formazione" class="story-link-item active">
+            <img data-img="icon_arrow" alt="" />
+            <span>Pezzi di formazione</span>
+          </a>
+          <a href="#progetti" data-route="progetti" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Progetti</span>
+          </a>
+          <a href="#vita-nelle-scuole" data-route="vita-nelle-scuole" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Vita nelle scuole</span>
+          </a>
+          <a href="#articoli-e-pubblicazioni" data-route="articoli-e-pubblicazioni" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Articoli e pubblicazioni</span>
+          </a>
+          <a href="#storie-in-rete" data-route="storie-in-rete" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Storie in rete</span>
+          </a>
+          <a href="#curriculum-vitae" data-route="curriculum-vitae" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Curriculum Vitae</span>
+          </a></nav>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: progetti (Progetti) -->
+    <section class="spa-view" id="view-progetti" data-page="progetti" data-title="Progetti">
+
+      
+      <nav class="subpage-breadcrumb" aria-label="Percorso di navigazione">
+        <div class="breadcrumb-trail">
+          <a href="#home" data-route="home">Home</a>
+          <span>/</span>
+          <a href="#chi-sono" data-route="chi-sono">Chi sono</a>
+          <span>/</span>
+          <span>Progetti</span>
+        </div>
+        <a href="#chi-sono" data-route="chi-sono">Torna a Chi sono</a>
+      </nav>
+
+      <h1 style="margin-bottom:0.25rem;">PROGETTI</h1>
+      <h2 style="text-align:center; margin-bottom:2rem;">pagina in costruzione</h2>
+
+      <div class="content-narrow">
+        <p style="margin-bottom:0.25rem;">2004 - <span class="display-inline">Oratorio Oggi e Domani</span> - FOM e Diocesi di Milano</p>
+        <p>Progetto progettato, sviluppato e realizzato in collaborazione con il dott. <a href="https://www.robertomauri.net/" target="_blank" rel="noopener noreferrer">Roberto Mauri</a>, su incarico della Fondazione Oratori Milanesi e la Diocesi di Milano a partire dall'Indagine <em>"70 nodi: Navigazione oratorio"</em></p>
+
+        <p style="margin-bottom:0.25rem;">Alcune informazioni inerenti il progetto:</p>
+        <ul>
+          <li><a href="./assets/docs/progetti_2004/00_progetto_oratori_tappe_del_percorso.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Tappe del percorso (PDF)</a></li>
+          <li><a href="./assets/docs/progetti_2004/00_progetto_oratori_progetti_pilota.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Progetti Pilota (PDF)</a></li>
+          <li><a href="./assets/docs/progetti_2004/00_progetto_oratori_presentazione_assemblea_2004.pps" target="_blank" rel="noopener noreferrer" download class="doc-link">Power Point di presentazione (PPS)</a></li>
+        </ul>
+
+        <p style="margin-bottom:0.25rem;">Le schede dei 14 progetti realizzati e promossi in tutta la Diocesi di Milano:</p>
+        <ol>
+          <li><a href="./assets/docs/progetti_2004/01_scheda_oratorio_uno_e_trino.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Oratorio Uno e Trino (PDF)</a></li>
+          <li><a href="./assets/docs/progetti_2004/02_scheda_mappacarta_dell_oratorio.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Mappacarta dell'oratorio (PDF)</a></li>
+          <li><a href="./assets/docs/progetti_2004/03_scheda_raccontiamo_l_oratorio.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Raccontiamo l'oratorio (PDF)</a></li>
+          <li><a href="./assets/docs/progetti_2004/04_scheda_musical.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Musical (PDF)</a></li>
+          <li><a href="./assets/docs/progetti_2004/05_scheda_teatro_forum.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Teatro forum (PDF)</a></li>
+          <li><a href="./assets/docs/progetti_2004/06_scheda_sostegno_alla_genitorialita.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Sostegno alla genitorialità (PDF)</a></li>
+          <li><a href="./assets/docs/progetti_2004/07_scheda_diversamente_aperto.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Diversamente aperto (PDF)</a></li>
+          <li><a href="./assets/docs/progetti_2004/08_scheda_campagna_di_comunicazione.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Campagna di comunicazione (PDF)</a></li>
+          <li><a href="./assets/docs/progetti_2004/09_scheda_comunicazione_interna.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Comunicazione interna (PDF)</a></li>
+          <li><a href="./assets/docs/progetti_2004/10_scheda_design_educativo.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Design Educativo (PDF)</a></li>
+          <li><a href="./assets/docs/progetti_2004/11_scheda_modelliamo_l_oratorio.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Modelliamo l'oratorio (PDF)</a></li>
+          <li><a href="./assets/docs/progetti_2004/12_scheda_oratorio_senza_frontiere.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Oratorio senza frontiere (PDF)</a></li>
+          <li><a href="./assets/docs/progetti_2004/13_scheda_la_rete.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">La rete (PDF)</a></li>
+          <li><a href="./assets/docs/progetti_2004/14_scheda_il_gemellaggio.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Il gemellaggio (PDF)</a></li>
+        </ol>
+
+        <hr class="editorial-divider" />
+
+        <ul>
+          <li><strong>2000 - 2003:</strong> Progettazione e coordinamento <strong>progetti Lg. 285/97</strong> e attività formative per adolescenti</li>
+          <li><strong>2004: Oratori oggi e domani</strong> - progetto in collaborazione con la Fom (Fondazione Oratori Milanesi)</li>
+          <li><strong>2005 - 2010:</strong> Coordinamento <strong>Commissione Estate Fom</strong> per la realizzazione della proposta educativa, formativa ed animativa degli oratori estivi con la redazione dei sussidi:
+            <ul style="list-style:none; padding-left:1.25rem;">
+              <li>- <em>Si fa per dire</em>, Ed. Indialogo, Milano 2006</li>
+              <li>- <em>Musica Maestro</em>, Ed. Indialogo, Milano 2007</li>
+              <li>- <em>Passinpiazza</em>, Ed. Indialogo, Milano 2008</li>
+              <li>- <em>Nasinsù</em>, Ed. Indialogo, Milano 2009</li>
+              <li>- <em>Sottosopra</em>, Ed. Indialogo, Milano 2010</li>
+            </ul>
+          </li>
+          <li><strong>2006: "Per oratori in rete"</strong> - progetto in collaborazione con il dipartimento Assi della Asl di Lecco ed il prof. Mario Maria Mozzanica.</li>
+          <li><strong>6 e 7 dicembre 2008:</strong> Ballabio - Corso residenziale di formazione per <strong>animatori di oratorio</strong></li>
+          <li><strong>2007 - 2008: Laboratorio sperimentale</strong> in collaborazione con CREADA (Centro di Relazione Educativa Adulto - Adolescente) - <a href="./assets/docs/progetti_2004/brochure_laboratorio_creada_2007_2008.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link"><em>Guarda la brochure informativa (PDF)</em></a></li>
+          <li><strong>2008: Educazione e new media</strong> - Valmadrera - Progetto di prevenzione e sensibilizzazione in collaborazione con la Fom e l'Asl di Lecco - Area Tossicodipendenze</li>
+          <li><strong>2012:</strong> Progettazione piano di Comunicazione integrata CSI Milano</li>
+          <li><strong>2012 - 2016:</strong> Progettazione dei Camp Milano sport e Sport Camp CSI</li>
+          <li><strong>2012 - 1015:</strong> Csi per Haiti e Csi per il mondo: progettazione dei percorsi formativi per i volontari</li>
+          <li><strong>2015 Progetti di sensibilizzazione per adolescenti e genitori</strong> inerenti "Nutrizione e sport" e "Dal tifare contro al tifare per"</li>
+          <li><strong>Giugno 2016: Progettazione e organizzazione della giornata di inaugurazione</strong> dell'impianto "Acquatica" di Milano: CSI Acquatica Day</li>
+          <li><strong>2016:</strong> Progettazione primo <strong>corso per allenatori CSI in Cina</strong></li>
+          <li><strong>2016:</strong> Programmazione e progettazione del percorso <strong>"30 giorni dirigenti"</strong></li>
+        </ul>
+
+        <div class="font-display" style="text-transform:uppercase; font-size:0.88rem; margin-top:1.75rem;">
+          <p style="margin-bottom:0.25rem; font-weight:600;">PROGETTI</p>
+          <p style="margin-bottom:0.2rem;">2010 formazione volontari francescani per l'albania</p>
+          <p style="margin-bottom:0.2rem;">2011 scutari</p>
+          <p style="margin-bottom:0.2rem;">2012 - luglio forazione volontari csi per haiti</p>
+          <p style="margin-bottom:0.2rem;">2012 - 18 GIUGNO - PRONTI PARTENZA VIA ORATORIO SAN LUIGI MILANO - save the children</p>
+          <p style="margin-bottom:0.2rem;">2012 -2013 - Sviluppo area comunicazione CSI Milano (Sito, Newsletter, Immagine coordinata, inserto Newsport di avvenire)</p>
+          <p style="margin-bottom:1rem;">formazione volontari csi per il mondo 2015</p>
+          <p style="margin-bottom:0.2rem;">Campo di volontariato a scuari giugno 2011</p>
+          <p style="margin-bottom:0.2rem;">Casciago 19/20 febbraio 2011SCOMMETTIAMO SUL FUTURO! - Mini campus residenziale futuri allenatori</p>
+          <p style="margin-bottom:1.5rem;">Chieti - progetto formazioe animatori di oratorio</p>
+        </div>
+
+        <h3 style="text-align:center; margin-top:1.5rem;">Eventi</h3>
+        <p style="margin-bottom:0.2rem;">Salsomaggiore, giugno 2011 - Torneo Master "Dirigere dentro"</p>
+        <p style="margin-bottom:0.2rem;">28 settembre 2011 - Testimonial per QUimamme Web TV - RCS</p>
+        <p style="margin-bottom:0.2rem;">Sfera Editore</p>
+        <p style="margin-bottom:0.2rem;">Salsomaggiore, giugno 2012 - Torneo Master - Se non ritornerete come bambini, non giocherete mai!</p>
+        <p class="font-display" style="text-transform:uppercase; font-size:0.88rem;">1 ottobre 2011 - bimbinfiera - tavola rotonda "nonni oggi"</p>
+
+        <div style="margin-top:2.5rem;">
+          <nav class="story-links-grid" aria-label="La mia storia professionale">
+          <a href="#pezzi-di-formazione" data-route="pezzi-di-formazione" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Pezzi di formazione</span>
+          </a>
+          <a href="#progetti" data-route="progetti" class="story-link-item active">
+            <img data-img="icon_arrow" alt="" />
+            <span>Progetti</span>
+          </a>
+          <a href="#vita-nelle-scuole" data-route="vita-nelle-scuole" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Vita nelle scuole</span>
+          </a>
+          <a href="#articoli-e-pubblicazioni" data-route="articoli-e-pubblicazioni" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Articoli e pubblicazioni</span>
+          </a>
+          <a href="#storie-in-rete" data-route="storie-in-rete" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Storie in rete</span>
+          </a>
+          <a href="#curriculum-vitae" data-route="curriculum-vitae" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Curriculum Vitae</span>
+          </a></nav>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: vita-nelle-scuole (Vita nelle Scuole) -->
+    <section class="spa-view" id="view-vita-nelle-scuole" data-page="vita-nelle-scuole" data-title="Vita nelle Scuole">
+
+      
+      <nav class="subpage-breadcrumb" aria-label="Percorso di navigazione">
+        <div class="breadcrumb-trail">
+          <a href="#home" data-route="home">Home</a>
+          <span>/</span>
+          <a href="#chi-sono" data-route="chi-sono">Chi sono</a>
+          <span>/</span>
+          <span>Vita nelle scuole</span>
+        </div>
+        <a href="#chi-sono" data-route="chi-sono">Torna a Chi sono</a>
+      </nav>
+
+      <h1>VITA NELLE SCUOLE</h1>
+
+      <div class="content-narrow">
+        <p>Dal <span class="display-inline">2008</span> ho iniziato a collaborare con diverse scuole svolgendo attività di <span class="display-inline">consulenza pedagogica educativa, progettazione</span> e <span class="display-inline">supervisione didattica, sportelli di ascolto</span> per i genitori, realizzazione di <span class="display-inline">percorsi di formazione</span> per bambini, genitori, insegnanti, docenti, studenti delle scuole secondarie</p>
+
+        <ul style="margin-top:1.5rem;">
+          <li>Scuola dell'Infanzia <strong>"Don Carlo San Martino"</strong> di Milano - Pio Istituto pei figli della provvidenza</li>
+          <li>Scuola dell'Infanzia <strong>"Origo"</strong> di Calco (Lc)</li>
+          <li>Scuola dell'Infanzia <strong>"San Zeno"</strong> di Olgiate Molgora (Lc)</li>
+          <li>Scuola dell'Infanzia <strong>"Divina provvidenza"</strong> di Brusaporto (Bg)</li>
+          <li>Liceo scientifico ad indirizzo sportivo <strong>"E. De Amicis"</strong> di Milano</li>
+          <li>Istituto Schiapparelli - Gramsci, Indirizzo di <strong>"Amministrazione, Finanza e Marketing potenziamento Sportivo"</strong>, Sede di Pioltello</li>
+          <li>Fondazione Clerici - <strong>Istituti tecnici professionali</strong>, sedi di Milano Belloni e Brugherio</li>
+          <li>Istituto Maddalena di Canossa - <strong>Liceo delle Scienze Umane e Liceo Economico Sociale</strong>, Monza</li>
+          <li>ISS Greppi - <strong>Liceo delle Scienze Umane e Liceo Economico Sociale</strong>, Monticello B.za (Lc)</li>
+          <li>Liceo MG Agnesi - <strong>Liceo Scientifico, Liceo Scienze applicate, Liceo Linguistico</strong>, Merate (Lc)</li>
+          <li>Istituto Marisa Bellisario - <strong>Liceo delle Scienze Umane e Liceo Economico Sociale, Istituto professionale per la sanità e l'assistenza</strong>, Inzago (Mi)</li>
+          <li>Liceo Giuseppe Parini, <strong>Liceo delle Scienze Umane e Liceo Economico Sociale</strong>, Seregno</li>
+        </ul>
+
+        <div style="margin-top:2.5rem;">
+          <nav class="story-links-grid" aria-label="La mia storia professionale">
+          <a href="#pezzi-di-formazione" data-route="pezzi-di-formazione" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Pezzi di formazione</span>
+          </a>
+          <a href="#progetti" data-route="progetti" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Progetti</span>
+          </a>
+          <a href="#vita-nelle-scuole" data-route="vita-nelle-scuole" class="story-link-item active">
+            <img data-img="icon_arrow" alt="" />
+            <span>Vita nelle scuole</span>
+          </a>
+          <a href="#articoli-e-pubblicazioni" data-route="articoli-e-pubblicazioni" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Articoli e pubblicazioni</span>
+          </a>
+          <a href="#storie-in-rete" data-route="storie-in-rete" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Storie in rete</span>
+          </a>
+          <a href="#curriculum-vitae" data-route="curriculum-vitae" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Curriculum Vitae</span>
+          </a></nav>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: articoli-e-pubblicazioni (Articoli e Pubblicazioni) -->
+    <section class="spa-view" id="view-articoli-e-pubblicazioni" data-page="articoli-e-pubblicazioni" data-title="Articoli e Pubblicazioni">
+
+      
+      <nav class="subpage-breadcrumb" aria-label="Percorso di navigazione">
+        <div class="breadcrumb-trail">
+          <a href="#home" data-route="home">Home</a>
+          <span>/</span>
+          <a href="#chi-sono" data-route="chi-sono">Chi sono</a>
+          <span>/</span>
+          <span>Articoli e pubblicazioni</span>
+        </div>
+        <a href="#chi-sono" data-route="chi-sono">Torna a Chi sono</a>
+      </nav>
+
+      <h1>articoli e pubblicazioni</h1>
+
+      <div class="content-narrow">
+        <ul>
+          <li>AAVV, <span class="display-inline">Educare solo Gratis?</span>, 2008, Ed. EDB</li>
+          <li>AAVV, <span class="display-inline">Dirigere dentro e fuori dal campo</span>, Ed. Indialogo, Milano 2014</li>
+          <li>AAVV, <span class="display-inline">Fuoriclasse Avvento 2011</span>, Azione Cattolica Milano</li>
+          <li>AAVV, <span class="display-inline">Fuoriclasse Avvento 2012</span>, Azione Cattolica Milano</li>
+          <li>AAVV, <span class="display-inline">Fuoriclasse Avvento 2013</span>, Azione Cattolica Milano</li>
+          <li>AAVV, <span class="display-inline">Giocabimbi, manuale per educatori sportivi</span>, Ed. Indialogo, Milano 2012</li>
+          <li>AAVV, <span class="display-inline">Sport a tutto campo</span>, Ed. Indialogo, Milano 2014</li>
+          <li>Silvia Borghi e Chiara Godina, <span class="display-inline">Immagini: oratorio, disabili e…</span> in Eco degli Oratori n°6/2006, Ed. Indialogo</li>
+          <li>Giuliana Galeotti e Chiara Godina, <span class="display-inline">Il C.Re.Ad.A</span> in Eco degli Oratori n°5/2006, Ed. Indialogo</li>
+          <li>Chiara Godina, <span class="display-inline">Alla scoperta della Comunità di Taizé</span> in Eco degli Oratori n°2/2006, Ed. Indialogo</li>
+          <li>Chiara Godina, <span class="display-inline">Educare gli adulti nel territorio: il ruolo degli oratori</span> in Eco degli Oratori n°4/2007, Ed. Indialogo</li>
+          <li>Chiara Godina, Giovanni Romano, Matteo Zappa, <span class="display-inline">Educazione “professionale” in oratorio: opportunità e rischi</span> in AAVV,</li>
+          <li>Chiara Godina, <span class="display-inline">Oratorio: luogo di crescita umana e cristiana</span> in I luoghi dell’educare, Quaderni del Creada n°2/2008 a cura di Maria Luisa De Natale, Ed. Insieme</li>
+          <li>Chiara Godina, <span class="display-inline">Un oratorio per i genitori</span> in Eco degli Oratori n°1/2008, Ed. Indialogo</li>
+          <li>Chiara Godina, <span class="display-inline">Giocare fa bene</span> in La Nostra Famiglia, notiziario di informazione n°1/2019</li>
+        </ul>
+
+        <p style="margin-top:1.75rem;">Articoli apparsi sull'inserto <span class="display-inline">Newsport</span> di <span class="display-inline">Avvenire</span></p>
+
+        <p style="margin-bottom:0.25rem;">7 settembre 2012 - <a href="./assets/docs/articoli_newsport/newsport_2012_09_07_percorsi_formativi.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Percorsi formativi ai blocchi di partenza (PDF)</a></p>
+        <p style="margin-bottom:0.25rem;">14 settembre 2012 - <a href="./assets/docs/articoli_newsport/newsport_2012_09_14_regole_vero_sport.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Le regole per amore del vero sport (PDF)</a></p>
+        <p style="margin-bottom:0.25rem;">5 ottobre 2012 - <a href="./assets/docs/articoli_newsport/newsport_2012_10_05_vademecum_allenatore.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Il vademecum dell'allenatore e dell'educatore sportivo (PDF)</a></p>
+        <p style="margin-bottom:0.25rem;">23 novembre 2012 - <a href="./assets/docs/articoli_newsport/newsport_2012_11_23_crescere_per_trasformare.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Crescere per trasformare (PDF)</a></p>
+        <p style="margin-bottom:0.25rem;">15 marzo 2013 - <a href="./assets/docs/articoli_newsport/newsport_2013_03_15_quando_lo_sport_educa.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Quando lo sport educa (PDF)</a></p>
+        <p style="margin-bottom:0.25rem;">20 dicembre 2013 - <a href="./assets/docs/articoli_newsport/newsport_2013_12_20_valore_mettersi_in_cammino.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Il valore di mettersi in cammino (PDF)</a></p>
+        <p style="margin-bottom:1.75rem;">26 settembre 2014 - <a href="./assets/docs/articoli_newsport/newsport_2014_09_26_nuovi_educatori_crescono.pdf" target="_blank" rel="noopener noreferrer" download class="doc-link">Nuovi educatori crescono (PDF)</a></p>
+
+        <h3 style="font-size:1rem; margin-bottom:1.25rem;">Consulenze pedagogiche per la realizzazione di articoli su riviste e giornali</h3>
+
+        <p style="margin-bottom:0.15rem;">Donna&amp;Mamma - Dicembre 2010</p>
+        <p style="margin-bottom:0.15rem;">24h con l'esperto - Una pedagogista a casa tua</p>
+        <p style="margin-bottom:1.15rem;"><em><strong>Genitori alla pari: lavoro in corso</strong></em> di Giada Solonia</p>
+
+        <p style="margin-bottom:0.15rem;">Donna&amp;Mamma - Luglio 2011</p>
+        <p style="margin-bottom:0.15rem;">24h con l'esperto - Una pedagogista a casa tua</p>
+        <p style="margin-bottom:1.15rem;"><em><strong>Come gestire, anche da sola, due figli</strong></em> di Francesca Capelli</p>
+
+        <p style="margin-bottom:0.15rem;">Donna&amp;Mamma - Luglio 2012</p>
+        <p style="margin-bottom:0.15rem;">24h con l'esperto - Una pedagogista a casa tua</p>
+        <p style="margin-bottom:1.15rem;"><em><strong>Come organizzarsi con due gemelli</strong></em> di Francesca Amè</p>
+
+        <p style="margin-bottom:0.15rem;">Donna&amp;Mamma - Marzo 2013</p>
+        <p style="margin-bottom:1.15rem;"><em><strong>Educarli - Facciamo ginnastica</strong></em> di Cristina Ferrari</p>
+
+        <p style="margin-bottom:0.15rem;">Donna&amp;Mamma - Aprile 2013</p>
+        <p style="margin-bottom:0.15rem;">24h con l'esperto - Una pedagogista a casa tua</p>
+        <p style="margin-bottom:1.15rem;"><em><strong>Come aiutarlo ad affrontare l'arrivo della sorellina</strong></em> di Fulvio Bertamini</p>
+
+        <p style="margin-bottom:0.15rem;">Io e il mio bambino - Febbraio 2014</p>
+        <p style="margin-bottom:2rem;"><em><strong>Ti conosco mascherina</strong></em> di Roberto Sonaglia</p>
+
+        <nav class="story-links-grid" aria-label="La mia storia professionale">
+          <a href="#pezzi-di-formazione" data-route="pezzi-di-formazione" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Pezzi di formazione</span>
+          </a>
+          <a href="#progetti" data-route="progetti" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Progetti</span>
+          </a>
+          <a href="#vita-nelle-scuole" data-route="vita-nelle-scuole" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Vita nelle scuole</span>
+          </a>
+          <a href="#articoli-e-pubblicazioni" data-route="articoli-e-pubblicazioni" class="story-link-item active">
+            <img data-img="icon_arrow" alt="" />
+            <span>Articoli e pubblicazioni</span>
+          </a>
+          <a href="#storie-in-rete" data-route="storie-in-rete" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Storie in rete</span>
+          </a>
+          <a href="#curriculum-vitae" data-route="curriculum-vitae" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Curriculum Vitae</span>
+          </a></nav>
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: storie-in-rete (Storie in Rete) -->
+    <section class="spa-view" id="view-storie-in-rete" data-page="storie-in-rete" data-title="Storie in Rete">
+
+      
+      <nav class="subpage-breadcrumb" aria-label="Percorso di navigazione">
+        <div class="breadcrumb-trail">
+          <a href="#home" data-route="home">Home</a>
+          <span>/</span>
+          <a href="#chi-sono" data-route="chi-sono">Chi sono</a>
+          <span>/</span>
+          <span>Storie in rete</span>
+        </div>
+        <a href="#chi-sono" data-route="chi-sono">Torna a Chi sono</a>
+      </nav>
+
+      <h1>STORIE IN RETE</h1>
+
+      <div class="content-narrow">
+        <ul class="font-display" style="text-transform:uppercase; font-size:1.05rem;">
+          <li style="margin-bottom:0.65rem;">Bye Bye ciuccio, scacco matto in quattro mosse &nbsp;&nbsp;<a href="https://quimamme.corriere.it/neonati/sviluppo/bye-bye-ciuccio-in-quattro-mosse" target="_blank" rel="noopener noreferrer" style="font-family:'Montserrat',sans-serif; text-transform:none; font-weight:700;">Leggi tutto</a></li>
+          <li style="margin-bottom:0.65rem;">Più tardi in classe? Più presto a letto, semmai</li>
+          <li style="margin-bottom:0.65rem;">Compiti delle vacanze, convinciamoli così</li>
+          <li style="margin-bottom:0.65rem;">Se l'asilo non gli manca... &nbsp;&nbsp;<a href="https://quimamme.corriere.it/bambini/tempo-libero/asilo-non-gli-manca" target="_blank" rel="noopener noreferrer" style="font-family:'Montserrat',sans-serif; text-transform:none; font-weight:700;">Leggi tutto</a></li>
+          <li style="margin-bottom:0.65rem;">Rientro all'asilo dopo le vacanze</li>
+          <li style="margin-bottom:0.65rem;">24 ore di idee per lo sport &nbsp;&nbsp;<a href="https://www.youtube.com/watch?v=W4EfR11QeA4" target="_blank" rel="noopener noreferrer" style="font-family:'Montserrat',sans-serif; text-transform:none; font-weight:700;">Guarda il video</a></li>
+          <li style="margin-bottom:0.65rem;">Intervista a Hey Dj Radio &nbsp;&nbsp;<a href="https://www.instagram.com/reel/C2aP4EvME3W/" target="_blank" rel="noopener noreferrer" style="font-family:'Montserrat',sans-serif; text-transform:none; font-weight:700;">Guarda il video</a></li>
+        </ul>
+
+        <div style="margin-top:2.5rem;">
+          <nav class="story-links-grid" aria-label="La mia storia professionale">
+          <a href="#pezzi-di-formazione" data-route="pezzi-di-formazione" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Pezzi di formazione</span>
+          </a>
+          <a href="#progetti" data-route="progetti" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Progetti</span>
+          </a>
+          <a href="#vita-nelle-scuole" data-route="vita-nelle-scuole" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Vita nelle scuole</span>
+          </a>
+          <a href="#articoli-e-pubblicazioni" data-route="articoli-e-pubblicazioni" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Articoli e pubblicazioni</span>
+          </a>
+          <a href="#storie-in-rete" data-route="storie-in-rete" class="story-link-item active">
+            <img data-img="icon_arrow" alt="" />
+            <span>Storie in rete</span>
+          </a>
+          <a href="#curriculum-vitae" data-route="curriculum-vitae" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Curriculum Vitae</span>
+          </a></nav>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: portfolio (Portfolio) -->
+    <section class="spa-view" id="view-portfolio" data-page="portfolio" data-title="Portfolio">
+
+      
+      <nav class="subpage-breadcrumb" aria-label="Percorso di navigazione">
+        <div class="breadcrumb-trail">
+          <a href="#home" data-route="home">Home</a>
+          <span>/</span>
+          <a href="#chi-sono" data-route="chi-sono">Chi sono</a>
+          <span>/</span>
+          <span>Portfolio</span>
+        </div>
+        <a href="#chi-sono" data-route="chi-sono">Torna a Chi sono</a>
+      </nav>
+
+      <h1>PORTFOLIO — LA MIA STORIA PROFESSIONALE</h1>
+
+      <div class="content-narrow">
+        <p style="margin-bottom:0.2rem;">Per cercare di ricostruire i pezzi della mia storia professionale mi è sembrato di andare a rovistare nella <span class="display-inline">"borsa di Mary Poppins"</span> dove ho trovato cose strane, impensabili, bizzarre...</p>
+        <p style="margin-bottom:0.2rem;">Pezzi di vita che si sono trasformati in incontri, persone, progetti, percorsi, immagini, storie, libri...</p>
+        <p><strong>Ogni pezzetto, anche il più piccolo, mi ha resa quella che sono...</strong></p>
+
+        <nav class="story-links-grid" aria-label="La mia storia professionale">
+          <a href="#pezzi-di-formazione" data-route="pezzi-di-formazione" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Pezzi di formazione</span>
+          </a>
+          <a href="#progetti" data-route="progetti" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Progetti</span>
+          </a>
+          <a href="#vita-nelle-scuole" data-route="vita-nelle-scuole" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Vita nelle scuole</span>
+          </a>
+          <a href="#articoli-e-pubblicazioni" data-route="articoli-e-pubblicazioni" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Articoli e pubblicazioni</span>
+          </a>
+          <a href="#storie-in-rete" data-route="storie-in-rete" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Storie in rete</span>
+          </a>
+          <a href="#curriculum-vitae" data-route="curriculum-vitae" class="story-link-item">
+            <img data-img="icon_arrow" alt="" />
+            <span>Curriculum Vitae</span>
+          </a></nav>
+      </div>
+
+      <hr class="editorial-divider" />
+
+      <div class="portfolio-grid">
+        
+          <div class="portfolio-item" data-lightbox="portfolio" data-caption="Dott.ssa Chiara Godina — Consulenza pedagogica e formazione">
+            <img data-img="img_chiara_portrait" alt="Dott.ssa Chiara Godina" class="portfolio-thumb" />
+            <div class="portfolio-caption">
+              <strong>Dott.ssa Chiara Godina</strong>
+              <span>Consulenza pedagogica e formazione</span>
+            </div>
+          </div>
+          <div class="portfolio-item" data-lightbox="portfolio" data-caption="L'essenziale è invisibile agli occhi — Educare, educarsi, lasciarsi educare">
+            <img data-img="img_home_plico" alt="L'essenziale è invisibile agli occhi" class="portfolio-thumb contain" />
+            <div class="portfolio-caption">
+              <strong>L'essenziale è invisibile agli occhi</strong>
+              <span>Educare, educarsi, lasciarsi educare</span>
+            </div>
+          </div>
+          <div class="portfolio-item" data-lightbox="portfolio" data-caption="Genitori — Counselling educativo e sostegno alla genitorialità">
+            <img data-img="img_cons_famiglia" alt="Genitori" class="portfolio-thumb" />
+            <div class="portfolio-caption">
+              <strong>Genitori</strong>
+              <span>Counselling educativo e sostegno alla genitorialità</span>
+            </div>
+          </div>
+          <div class="portfolio-item" data-lightbox="portfolio" data-caption="Adolescenti — Spazio di ascolto — Uno spazio di ascolto differente, neutro">
+            <img data-img="img_adol_ascolto" alt="Adolescenti — Spazio di ascolto" class="portfolio-thumb" />
+            <div class="portfolio-caption">
+              <strong>Adolescenti — Spazio di ascolto</strong>
+              <span>Uno spazio di ascolto differente, neutro</span>
+            </div>
+          </div>
+          <div class="portfolio-item" data-lightbox="portfolio" data-caption="Laboratori sul metodo di studio — Imparare ad imparare">
+            <img data-img="img_adol_libri" alt="Laboratori sul metodo di studio" class="portfolio-thumb" />
+            <div class="portfolio-caption">
+              <strong>Laboratori sul metodo di studio</strong>
+              <span>Imparare ad imparare</span>
+            </div>
+          </div>
+          <div class="portfolio-item" data-lightbox="portfolio" data-caption="Laboratori individuali sul metodo di studio — Strategie di studio personalizzate">
+            <img data-img="img_metodo_lavagna" alt="Laboratori individuali sul metodo di studio" class="portfolio-thumb contain" />
+            <div class="portfolio-caption">
+              <strong>Laboratori individuali sul metodo di studio</strong>
+              <span>Strategie di studio personalizzate</span>
+            </div>
+          </div>
+          <div class="portfolio-item" data-lightbox="portfolio" data-caption="S.O.S. STUDIO — Corso di formazione per insegnare ad imparare">
+            <img data-img="img_sos_locandina" alt="S.O.S. STUDIO" class="portfolio-thumb contain" />
+            <div class="portfolio-caption">
+              <strong>S.O.S. STUDIO</strong>
+              <span>Corso di formazione per insegnare ad imparare</span>
+            </div>
+          </div>
+          <div class="portfolio-item" data-lightbox="portfolio" data-caption="Corsi e percorsi di formazione (2000-2010) — Animazione, creatività e relazione educativa">
+            <img data-img="img_form_valigetta" alt="Corsi e percorsi di formazione (2000-2010)" class="portfolio-thumb" />
+            <div class="portfolio-caption">
+              <strong>Corsi e percorsi di formazione (2000-2010)</strong>
+              <span>Animazione, creatività e relazione educativa</span>
+            </div>
+          </div>
+          <div class="portfolio-item" data-lightbox="portfolio" data-caption="Formazione educativa e sportiva (2010-2016) — Progettazione, organizzazione, supervisione e docenza">
+            <img data-img="img_form_sport" alt="Formazione educativa e sportiva (2010-2016)" class="portfolio-thumb" />
+            <div class="portfolio-caption">
+              <strong>Formazione educativa e sportiva (2010-2016)</strong>
+              <span>Progettazione, organizzazione, supervisione e docenza</span>
+            </div>
+          </div>
+          <div class="portfolio-item" data-lightbox="portfolio" data-caption="Educatori ed insegnanti — Supervisione e consulenza didattica">
+            <img data-img="img_cons_scuole" alt="Educatori ed insegnanti" class="portfolio-thumb" />
+            <div class="portfolio-caption">
+              <strong>Educatori ed insegnanti</strong>
+              <span>Supervisione e consulenza didattica</span>
+            </div>
+          </div>
+          <div class="portfolio-item" data-lightbox="portfolio" data-caption="Orientamento scolastico — Scelta consapevole del percorso scolastico">
+            <img data-img="img_home_matite" alt="Orientamento scolastico" class="portfolio-thumb" />
+            <div class="portfolio-caption">
+              <strong>Orientamento scolastico</strong>
+              <span>Scelta consapevole del percorso scolastico</span>
+            </div>
+          </div>
+          <div class="portfolio-item" data-lightbox="portfolio" data-caption="Formazione e crescita — Studio, approfondimento e crescita personale">
+            <img data-img="img_home_annie" alt="Formazione e crescita" class="portfolio-thumb" />
+            <div class="portfolio-caption">
+              <strong>Formazione e crescita</strong>
+              <span>Studio, approfondimento e crescita personale</span>
+            </div>
+          </div>
+      </div>
+
+      <div class="content-narrow" style="text-align:center; margin-top:2.5rem;">
+        <h2 style="margin-bottom:0.35rem;">INCONTRI E CORSI DI FORMAZIONE</h2>
+        <p style="margin-bottom:1rem; font-style:italic;">
+          Per consultare l'elenco cronologico completo degli oltre vent'anni di corsi e incontri formativi dal 2000 ad oggi, visita la sezione dedicata:
+        </p>
+        <p><a href="#pezzi-di-formazione" data-route="pezzi-di-formazione" class="display-inline" style="font-size:1.12rem;">Vai a Pezzi di Formazione (2000–2024) &rarr;</a></p>
+      </div>
+
+    </section>
+
+
+    <!-- VISTA SPA: contatti (Contatti) -->
+    <section class="spa-view" id="view-contatti" data-page="contatti" data-title="Contatti">
+
+      <h1>Contatti</h1>
+      <div class="contatti-grid">
+        <div>
+          <div class="direct-contact-list">
+            <a href="mailto:chiara.godina@gmail.com" target="_top" class="direct-contact-row" aria-label="Scrivi a chiara.godina@gmail.com">
+              <span class="direct-contact-icon-box">
+                <img data-img="icon_email" alt="Email" />
+              </span>
+              <div class="direct-contact-info">
+                <span class="direct-contact-label">Email</span>
+                <span class="direct-contact-value">chiara.godina@gmail.com</span>
+                <span class="direct-contact-sub">Scrivimi per informazioni o appuntamenti</span>
+              </div>
+            </a>
+            <a href="tel:+393402714079" target="_top" class="direct-contact-row" aria-label="Chiama il 340 2714079">
+              <span class="direct-contact-icon-box">
+                <img data-img="icon_phone" alt="Telefono" />
+              </span>
+              <div class="direct-contact-info">
+                <span class="direct-contact-label">Telefono</span>
+                <span class="direct-contact-value font-display">340 2714079</span>
+                <span class="direct-contact-sub">Dalle 14.30 alle 19.30</span>
+              </div>
+            </a>
+            <a href="https://wa.me/393402714079" target="_blank" rel="noopener noreferrer" class="direct-contact-row" aria-label="Invia un messaggio WhatsApp al 340 2714079, si apre in una nuova scheda">
+              <span class="direct-contact-icon-box">
+                <img data-img="icon_whatsapp" alt="WhatsApp" />
+              </span>
+              <div class="direct-contact-info">
+                <span class="direct-contact-label">WhatsApp</span>
+                <span class="direct-contact-value">Messaggio Diretto</span>
+                <span class="direct-contact-sub">Per comunicazioni rapide via chat</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div style="width:100%; height:315px; border:1px solid var(--neutral-light); margin-bottom:1rem; background:#EAE6DF;">
+            <iframe
+              title="Consulenza Pedagogica e Formazione - Via Garibaldi, 6, 23880 Casatenovo"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://maps.google.com/maps?q=Via+Garibaldi+6,+23880+Casatenovo+LC&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed">
+            </iframe>
+          </div>
+          <div style="text-align:center;">
+            <p style="margin-bottom:0.2rem;"><strong>Consulenza Pedagogica e Formazione</strong></p>
+            <p style="margin-bottom:0.15rem;">Via Garibaldi, 6</p>
+            <p style="margin:0;">23880 <strong>Casatenovo</strong> (LC)</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-address">
+        <h4 class="footer-col-title"><a href="#home" data-route="home">Consulenza pedagogica e formazione</a></h4>
+        <p>Via Garibaldi 6</p>
+        <p>23880 <strong>Casatenovo</strong></p>
+      </div>
+      <div>
+        <h4 class="footer-col-title"><a href="#home" data-route="home">D.ssa Chiara Godina</a></h4>
+        <div class="footer-contact-row">
+          <img data-img="icon_phone" alt="Telefono" />
+          <a href="tel:+393402714079" target="_top"><strong>340 2714079</strong></a>
+        </div>
+        <div class="footer-contact-row">
+          <img data-img="icon_email" alt="Email" />
+          <a href="mailto:chiara.godina@gmail.com" target="_top">chiara.godina@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <p style="margin:0;">© 2018 by Chiara Godina</p>
+    </div>
+  </footer>
+
+
+  <!-- LIGHTBOX FULLSCREEN VANILLA JS -->
+  <div class="lightbox-overlay" id="lightboxOverlay" role="dialog" aria-modal="true" aria-label="Visualizzatore Immagini a Schermo Intero">
+    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Chiudi visualizzatore (ESC)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <button type="button" class="lightbox-prev" id="lightboxPrev" aria-label="Immagine precedente">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <div class="lightbox-content-wrap">
+      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" alt="Anteprima ingrandita" class="lightbox-img" id="lightboxImg" />
+    </div>
+    <button type="button" class="lightbox-next" id="lightboxNext" aria-label="Immagine successiva">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+    <div class="lightbox-caption-bar">
+      <div class="lightbox-caption-text" id="lightboxCaption"></div>
+      <div class="lightbox-counter" id="lightboxCounter"></div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. DIZIONARIO DEDUPLICATO BASE64 (IMAGE_VAULT) & IDRATAZIONE ISTANTANEA
+    // =========================================================================
+    const IMAGE_VAULT = {
+  "icon_phone": "./assets/images/icon_phone.png",
+  "icon_email": "./assets/images/icon_email.png",
+  "icon_whatsapp": "./assets/images/icon_whatsapp.png",
+  "icon_arrow": "./assets/images/icon_arrow.png",
+  "img_duepigreco": "./assets/images/img_duepigreco.png",
+  "img_metodo_lavagna": "./assets/images/img_metodo_lavagna.webp",
+  "img_home_plico": "./assets/images/img_home_plico.webp",
+  "img_home_matite": "./assets/images/img_home_matite.webp",
+  "img_home_annie": "./assets/images/img_home_annie.webp",
+  "img_cons_famiglia": "./assets/images/img_cons_famiglia.webp",
+  "img_cons_adol": "./assets/images/img_cons_adol.webp",
+  "img_cons_scuole": "./assets/images/img_cons_scuole.webp",
+  "img_adol_ascolto": "./assets/images/img_adol_ascolto.webp",
+  "img_adol_libri": "./assets/images/img_adol_libri.webp",
+  "img_sos_locandina": "./assets/images/img_sos_locandina.webp",
+  "img_chiara_portrait": "./assets/images/img_chiara_portrait.webp",
+  "img_form_valigetta": "./assets/images/img_form_valigetta.webp",
+  "img_form_sport": "./assets/images/img_form_sport.webp"
+};
+
+    function hydrateImageVault() {
+      var imgElements = document.querySelectorAll('[data-img]');
+      for (var i = 0; i < imgElements.length; i++) {
+        var el = imgElements[i];
+        var key = el.getAttribute('data-img');
+        if (key && IMAGE_VAULT[key]) {
+          el.setAttribute('src', IMAGE_VAULT[key]);
+        }
+      }
+      var bgElements = document.querySelectorAll('[data-bg]');
+      for (var j = 0; j < bgElements.length; j++) {
+        var bgEl = bgElements[j];
+        var bgKey = bgEl.getAttribute('data-bg');
+        if (bgKey && IMAGE_VAULT[bgKey]) {
+          bgEl.style.backgroundImage = 'url("' + IMAGE_VAULT[bgKey] + '")';
+        }
+      }
+    }
+
+    // =========================================================================
+    // 2. ROUTER SPA CLIENT-SIDE BASATO SU HASH (#) + SCROLL RESET + NAVBAR ACTIVE
+    // =========================================================================
+    const ROUTE_ALIASES = {
+      "": "home",
+      "home": "home",
+      "consulenza": "consulenza",
+      "consulenza-pedagogica": "consulenza-pedagogica",
+      "copia-di-consulenza": "consulenza-pedagogica",
+      "genitori": "genitori",
+      "famiglia": "genitori",
+      "adolescenti": "adolescenti",
+      "metodo-di-studio": "metodo-di-studio",
+      "scuole": "scuole",
+      "corsi-di-formazione": "corsi-di-formazione",
+      "sos-studio": "sos-studio",
+      "corsi-online": "corsi-online",
+      "materiale-didattico": "materiale-didattico",
+      "s-projects-basic": "materiale-didattico",
+      "chi-sono": "chi-sono",
+      "chi-sono-1": "chi-sono",
+      "about": "chi-sono",
+      "curriculum-vitae": "curriculum-vitae",
+      "copia-di-chi-sono": "curriculum-vitae",
+      "formazione": "formazione",
+      "pezzi-di-formazione": "pezzi-di-formazione",
+      "progetti": "progetti",
+      "vita-nelle-scuole": "vita-nelle-scuole",
+      "articoli-e-pubblicazioni": "articoli-e-pubblicazioni",
+      "storie-in-rete": "storie-in-rete",
+      "portfolio": "portfolio",
+      "contatti": "contatti"
+    };
+
+    const PARENT_NAV_GROUP = {
+      "home": "home",
+      "consulenza": "consulenza",
+      "consulenza-pedagogica": "consulenza",
+      "genitori": "consulenza",
+      "adolescenti": "consulenza",
+      "metodo-di-studio": "consulenza",
+      "scuole": "scuole",
+      "corsi-di-formazione": "corsi-di-formazione",
+      "sos-studio": "corsi-di-formazione",
+      "corsi-online": "corsi-di-formazione",
+      "materiale-didattico": "materiale-didattico",
+      "chi-sono": "chi-sono",
+      "curriculum-vitae": "chi-sono",
+      "formazione": "chi-sono",
+      "pezzi-di-formazione": "chi-sono",
+      "progetti": "chi-sono",
+      "vita-nelle-scuole": "chi-sono",
+      "articoli-e-pubblicazioni": "chi-sono",
+      "storie-in-rete": "chi-sono",
+      "portfolio": "chi-sono",
+      "contatti": "contatti"
+    };
+
+    var currentRoute = "home";
+    var fadeTimer = null;
+
+    function normalizeRoute(rawHash) {
+      var cleaned = String(rawHash || "")
+        .replace(/^#+/, "")
+        .replace(/^\/+|\/+$/g, "")
+        .trim()
+        .toLowerCase();
+      return ROUTE_ALIASES[cleaned] || "home";
+    }
+
+    function closeMobileMenu() {
+      var mainNav = document.getElementById("mainNavList");
+      var navToggle = document.getElementById("navToggleBtn");
+      if (mainNav && mainNav.classList.contains("open")) {
+        mainNav.classList.remove("open");
+      }
+      if (navToggle) {
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+      var openItems = document.querySelectorAll(".nav-item.dropdown-open");
+      for (var i = 0; i < openItems.length; i++) {
+        openItems[i].classList.remove("dropdown-open");
+      }
+    }
+
+    function updateNavbarActiveState(routeKey) {
+      var parentGroup = PARENT_NAV_GROUP[routeKey] || "home";
+      var topLinks = document.querySelectorAll(".main-nav .nav-link");
+      for (var i = 0; i < topLinks.length; i++) {
+        var link = topLinks[i];
+        var grp = link.getAttribute("data-nav-group");
+        if (grp === parentGroup) {
+          link.classList.add("active");
+          if (link.getAttribute("data-route") === routeKey) {
+            link.setAttribute("aria-current", "page");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        } else {
+          link.classList.remove("active");
+          link.removeAttribute("aria-current");
+        }
+      }
+
+      var dropLinks = document.querySelectorAll(".main-nav .dropdown-link");
+      for (var j = 0; j < dropLinks.length; j++) {
+        var dLink = dropLinks[j];
+        if (dLink.getAttribute("data-route") === routeKey) {
+          dLink.classList.add("active");
+          dLink.setAttribute("aria-current", "page");
+        } else {
+          dLink.classList.remove("active");
+          dLink.removeAttribute("aria-current");
+        }
+      }
+    }
+
+    function activateRoute(routeKey, updateHash) {
+      var resolved = ROUTE_ALIASES[routeKey] || "home";
+      var targetView = document.getElementById("view-" + resolved);
+      if (!targetView) {
+        resolved = "home";
+        targetView = document.getElementById("view-home");
+      }
+
+      currentRoute = resolved;
+
+      var allViews = document.querySelectorAll(".spa-view");
+      for (var i = 0; i < allViews.length; i++) {
+        var v = allViews[i];
+        if (v !== targetView) {
+          v.classList.remove("visible-view");
+          v.classList.remove("active-view");
+        }
+      }
+
+      if (targetView) {
+        targetView.classList.add("active-view");
+        if (fadeTimer) clearTimeout(fadeTimer);
+        // Trigger reflow per transizione CSS opacity 150ms
+        void targetView.offsetWidth;
+        targetView.classList.add("visible-view");
+
+        var pageTitle = targetView.getAttribute("data-title") || "Home";
+        try {
+          document.title = pageTitle + " — Consulenza pedagogica e formazione - D.ssa Chiara Godina";
+        } catch(e) {}
+      }
+
+      updateNavbarActiveState(resolved);
+      closeMobileMenu();
+
+      if (updateHash) {
+        var desiredHash = "#" + resolved;
+        try {
+          if (window.location.hash !== desiredHash) {
+            try {
+              history.pushState({ route: resolved }, "", desiredHash);
+            } catch (err) {
+              window.location.hash = desiredHash;
+            }
+          }
+        } catch(e) {
+          // In severe iframe sandbox where hash writing is denied, view is already swapped in DOM
+        }
+      }
+
+      try {
+        window.scrollTo({ top: 0, behavior: "instant" });
+      } catch (err) {
+        try { window.scrollTo(0, 0); } catch(e2) {}
+      }
+    }
+
+    // =========================================================================
+    // 3. EVENT DELEGATION GLOBALE (NAVIGAZIONE, ACCORDION, RICERCA, LIGHTBOX)
+    // =========================================================================
+    (function() {
+      hydrateImageVault();
+
+      var initialRoute = "home";
+      try {
+        initialRoute = normalizeRoute(window.location.hash);
+      } catch(e) {}
+      activateRoute(initialRoute, false);
+
+      window.addEventListener("hashchange", function() {
+        var nextRoute = normalizeRoute(window.location.hash);
+        activateRoute(nextRoute, false);
+      });
+
+      window.addEventListener("popstate", function() {
+        var nextRoute = normalizeRoute(window.location.hash);
+        activateRoute(nextRoute, false);
+      });
+
+      // Hamburger mobile
+      var navToggle = document.getElementById("navToggleBtn");
+      var mainNav = document.getElementById("mainNavList");
+      if (navToggle && mainNav) {
+        navToggle.addEventListener("click", function(e) {
+          e.stopPropagation();
+          var isOpen = mainNav.classList.toggle("open");
+          navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        });
+      }
+
+      // Lightbox state (circoscritto alle foto della vista attiva con focus trap)
+      var overlay = document.getElementById("lightboxOverlay");
+      var lbImg = document.getElementById("lightboxImg");
+      var lbCaption = document.getElementById("lightboxCaption");
+      var lbCounter = document.getElementById("lightboxCounter");
+      var btnClose = document.getElementById("lightboxClose");
+      var btnPrev = document.getElementById("lightboxPrev");
+      var btnNext = document.getElementById("lightboxNext");
+      var activeGalleryTriggers = [];
+      var currentLightboxIndex = 0;
+      var lastFocusedElement = null;
+
+      function renderLightboxSlide(index) {
+        if (!activeGalleryTriggers.length) return;
+        currentLightboxIndex = (index + activeGalleryTriggers.length) % activeGalleryTriggers.length;
+        var el = activeGalleryTriggers[currentLightboxIndex];
+        var imgEl = el.tagName === "IMG" ? el : el.querySelector("img");
+        var src = el.getAttribute("data-src") || (imgEl ? imgEl.getAttribute("src") : "");
+        var caption = el.getAttribute("data-caption") || (imgEl ? imgEl.getAttribute("alt") : "") || "";
+        lbImg.setAttribute("src", src);
+        lbImg.setAttribute("alt", caption);
+        lbCaption.textContent = caption;
+        lbCounter.textContent = (currentLightboxIndex + 1) + " / " + activeGalleryTriggers.length;
+        if (!overlay.classList.contains("active")) {
+          lastFocusedElement = document.activeElement;
+        }
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+        if (btnClose) btnClose.focus();
+      }
+
+      function closeLightbox() {
+        if (!overlay) return;
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+        if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+          try { lastFocusedElement.focus(); } catch (e) {}
+        }
+      }
+
+      function showPrevSlide(e) {
+        if (e) e.stopPropagation();
+        renderLightboxSlide(currentLightboxIndex - 1);
+      }
+
+      function showNextSlide(e) {
+        if (e) e.stopPropagation();
+        renderLightboxSlide(currentLightboxIndex + 1);
+      }
+
+      if (btnClose) btnClose.addEventListener("click", closeLightbox);
+      if (btnPrev) btnPrev.addEventListener("click", showPrevSlide);
+      if (btnNext) btnNext.addEventListener("click", showNextSlide);
+      if (overlay) {
+        overlay.addEventListener("click", function(e) {
+          if (e.target === overlay) closeLightbox();
+        });
+      }
+
+      document.addEventListener("keydown", function(e) {
+        if (!overlay || !overlay.classList.contains("active")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowLeft") showPrevSlide();
+        if (e.key === "ArrowRight") showNextSlide();
+        if (e.key === "Tab") {
+          var focusables = [btnClose, btnPrev, btnNext].filter(Boolean);
+          if (!focusables.length) return;
+          var first = focusables[0];
+          var last = focusables[focusables.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      // Attivazione da tastiera per trigger con data-lightbox (Enter / Space)
+      document.addEventListener("keydown", function(e) {
+        if (overlay && overlay.classList.contains("active")) return;
+        var lbTrigger = e.target.closest("[data-lightbox]");
+        if (lbTrigger && (e.key === "Enter" || e.key === " ")) {
+          e.preventDefault();
+          lbTrigger.click();
+        }
+      });
+
+      var touchStartX = 0;
+      if (overlay) {
+        overlay.addEventListener("touchstart", function(e) {
+          if (e.changedTouches && e.changedTouches.length > 0) {
+            touchStartX = e.changedTouches[0].screenX;
+          }
+        }, { passive: true });
+
+        overlay.addEventListener("touchend", function(e) {
+          if (e.changedTouches && e.changedTouches.length > 0) {
+            var diff = e.changedTouches[0].screenX - touchStartX;
+            if (Math.abs(diff) > 45) {
+              if (diff < 0) showNextSlide();
+              else showPrevSlide();
+            }
+          }
+        }, { passive: true });
+      }
+
+      // Event Delegation sul documento per click su route, accordion e lightbox
+      document.addEventListener("click", function(e) {
+        // A. Link di navigazione SPA [data-route]
+        var routeLink = e.target.closest("[data-route]");
+        if (routeLink) {
+          e.preventDefault();
+          var targetRoute = routeLink.getAttribute("data-route");
+          if (targetRoute) {
+            closeLightbox();
+            activateRoute(targetRoute, true);
+          }
+          return;
+        }
+
+        // B. Accordion anni in Pezzi di Formazione / Portfolio
+        var yearBtn = e.target.closest(".year-heading-btn");
+        if (yearBtn) {
+          e.preventDefault();
+          var yearBlock = yearBtn.closest(".year-block");
+          if (yearBlock) {
+            var isCollapsed = yearBlock.classList.toggle("collapsed");
+            yearBtn.setAttribute("aria-expanded", isCollapsed ? "false" : "true");
+          }
+          return;
+        }
+
+        // C. Trigger Lightbox [data-lightbox]
+        var lbTrigger = e.target.closest("[data-lightbox]");
+        if (lbTrigger) {
+          e.preventDefault();
+          var parentView = lbTrigger.closest(".spa-view") || document;
+          var groupName = lbTrigger.getAttribute("data-lightbox");
+          var selector = groupName ? '[data-lightbox="' + groupName + '"]' : "[data-lightbox]";
+          activeGalleryTriggers = Array.prototype.slice.call(parentView.querySelectorAll(selector));
+          var idx = activeGalleryTriggers.indexOf(lbTrigger);
+          renderLightboxSlide(idx >= 0 ? idx : 0);
+          return;
+        }
+      });
+
+      // Event Delegation per barra di ricerca istantanea su qualsiasi vista
+      document.addEventListener("input", function(e) {
+        if (!e.target || !e.target.classList || !e.target.classList.contains("timeline-search-input")) return;
+        var searchInput = e.target;
+        var q = searchInput.value.toLowerCase().trim();
+        var scopeView = searchInput.closest(".spa-view") || document;
+        var blocks = scopeView.querySelectorAll(".year-block");
+        for (var i = 0; i < blocks.length; i++) {
+          var block = blocks[i];
+          var lines = block.querySelectorAll(".event-line");
+          var matchCount = 0;
+          for (var j = 0; j < lines.length; j++) {
+            var line = lines[j];
+            var txt = line.textContent.toLowerCase();
+            if (!q || txt.indexOf(q) !== -1) {
+              line.style.display = "";
+              matchCount++;
+            } else {
+              line.style.display = "none";
+            }
+          }
+          var headingBtn = block.querySelector(".year-heading-btn");
+          var headingTxt = headingBtn ? headingBtn.textContent.toLowerCase() : "";
+          if (!q) {
+            block.style.display = "";
+            block.classList.remove("collapsed");
+          } else if (matchCount > 0 || headingTxt.indexOf(q) !== -1) {
+            block.style.display = "";
+            block.classList.remove("collapsed");
+          } else {
+            block.style.display = "none";
+          }
+        }
+      });
+
+    })();
+  </script>
+
+</body>
+</html>
