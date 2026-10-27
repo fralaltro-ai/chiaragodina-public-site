@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /assets/docs/curriculum/
+
+Sitemap: https://www.chiaragodina.com/sitemap.xml
