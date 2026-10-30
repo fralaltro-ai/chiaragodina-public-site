@@ -398,10 +398,12 @@
       margin: 0;
       z-index: 950;
     }
-    .nav-item:hover .dropdown-menu,
-    .nav-item:focus-within .dropdown-menu,
-    .nav-item.dropdown-open .dropdown-menu {
-      display: block;
+    @media (min-width: 861px) {
+      .nav-item:hover .dropdown-menu,
+      .nav-item:focus-within .dropdown-menu,
+      .nav-item.dropdown-open .dropdown-menu {
+        display: block;
+      }
     }
     .dropdown-menu li {
       margin: 0;
@@ -1163,9 +1165,13 @@
 
     /* RESPONSIVE BREAKPOINTS (1440px, 860px, 520px, 375px) */
     @media (max-width: 860px) {
-      /* Header compatto ed elegante: altezza ridotta da 260px a circa 68px */
+      /* Header compatto, sticky ed elegante per mobile */
       .site-header {
         padding: 0.65rem 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 900;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
       }
       .header-inner {
         flex-direction: row;
@@ -1244,6 +1250,10 @@
         border-top: 1px solid var(--surface-white);
         border-bottom: 1px solid var(--surface-white);
         margin-top: 0.65rem;
+        max-height: calc(100vh - 64px);
+        max-height: calc(100dvh - 64px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
       }
       .main-nav.open {
         display: flex;
@@ -1273,8 +1283,8 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 44px;
-        min-height: 44px;
+        width: 52px;
+        min-height: 46px;
         background: transparent;
         border: none;
         border-left: 1px solid rgba(255, 255, 255, 0.25);
@@ -1303,8 +1313,11 @@
         border-top: 1px solid rgba(255, 255, 255, 0.15);
         padding: 0;
       }
-      .nav-item.dropdown-open .dropdown-menu {
+      .nav-item.dropdown-open > .dropdown-menu {
         display: block;
+      }
+      .nav-item:not(.dropdown-open) > .dropdown-menu {
+        display: none !important;
       }
       .dropdown-menu li {
         border-bottom: 1px solid rgba(255, 255, 255, 0.12);
@@ -1370,6 +1383,11 @@
         margin-bottom: 1rem;
         gap: 0.35rem;
       }
+      .subpage-breadcrumb a {
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+      }
       .home-photos-row {
         grid-template-columns: 1fr;
         gap: 1.25rem;
@@ -1403,16 +1421,39 @@
         margin: 0 auto;
       }
       .adol-row-title {
-        text-align: left;
+        text-align: center;
         padding-top: 0;
+      }
+      .adol-row-title h2 br {
+        display: none;
+      }
+      .adol-row .white-frame-photo,
+      .formazione-row-1 .white-frame-photo,
+      .formazione-row-2 .white-frame-photo {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+      .formazione-row-2 .white-frame-photo {
+        order: 2;
       }
       .story-links-grid {
         grid-template-columns: 1fr;
         gap: 0.65rem;
       }
+      .story-link-item {
+        min-height: 44px;
+        padding: 0.35rem 0.25rem;
+      }
       .physics-row {
         flex-direction: column;
         align-items: flex-start;
+      }
+      .physics-channel-link {
+        max-width: 100%;
+      }
+      .physics-channel-link span {
+        overflow-wrap: anywhere;
+        word-break: break-word;
       }
       .direct-contact-row {
         min-height: auto;
@@ -1422,6 +1463,56 @@
       .direct-contact-value {
         font-size: 1.05rem;
         word-break: break-word;
+      }
+      .cv-download-bar .cv-download-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .cv-download-bar .doc-download-link {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+      }
+      .cv-download-bar .cv-sep {
+        display: none;
+      }
+      .timeline-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+      }
+      .timeline-search-input {
+        font-size: 1rem;
+        min-height: 44px;
+        width: 100%;
+      }
+      .year-heading-btn {
+        width: 100%;
+        min-height: 44px;
+        justify-content: space-between;
+        padding: 0.5rem 0.65rem;
+        background: var(--surface-white);
+        border: 1px solid var(--neutral-light);
+        border-radius: 2px;
+        margin-bottom: 0.5rem;
+      }
+      .year-heading-btn::after {
+        content: "-";
+        font-family: inherit;
+        font-size: 1.3rem;
+        font-weight: 700;
+        line-height: 1;
+        color: var(--brand-primary);
+        padding-right: 0.25rem;
+      }
+      .year-block.collapsed .year-heading-btn::after {
+        content: "+";
+      }
+      .year-heading-btn:hover,
+      .year-heading-btn:focus-visible {
+        background-color: #F1ECE6;
+        text-decoration: none;
       }
     }
 
@@ -1454,6 +1545,21 @@
       }
       .footer-copyright {
         text-align: left;
+      }
+      .lightbox-prev, .lightbox-next {
+        top: auto;
+        bottom: 1.25rem;
+        transform: none;
+      }
+      .lightbox-prev {
+        left: 1.25rem;
+      }
+      .lightbox-next {
+        right: 1.25rem;
+      }
+      .lightbox-caption-bar {
+        padding: 0 3.5rem;
+        margin-top: 0.5rem;
       }
     }
 </style>
@@ -2100,8 +2206,8 @@
 
       <div class="cv-download-bar">
         <p style="margin:0 0 0.4rem; font-weight:600; color:var(--brand-primary); font-family:'Marcellus',Georgia,serif; text-transform:uppercase; font-size:0.95rem;">Download Documenti e Allegati</p>
-        <p style="margin:0; font-size:0.95rem;">
-          <a href="./assets/docs/curriculum/curriculum_vitae_chiara_godina.pdf" target="_blank" rel="nofollow noopener noreferrer" download class="doc-download-link">Scarica Curriculum Vitae (PDF)</a> &nbsp;|&nbsp; 
+        <p class="cv-download-links" style="margin:0; font-size:0.95rem;">
+          <a href="./assets/docs/curriculum/curriculum_vitae_chiara_godina.pdf" target="_blank" rel="nofollow noopener noreferrer" download class="doc-download-link">Scarica Curriculum Vitae (PDF)</a><span class="cv-sep"> &nbsp;|&nbsp; </span>
           <a href="./assets/docs/curriculum/curriculum_vitae_chiara_godina_allegato.pdf" target="_blank" rel="nofollow noopener noreferrer" download class="doc-download-link">Scarica Allegato B (PDF)</a>
         </p>
       </div>
@@ -2172,8 +2278,8 @@
 
       <div class="cv-download-bar">
         <p style="margin:0 0 0.4rem; font-weight:600; color:var(--brand-primary); font-family:'Marcellus',Georgia,serif; text-transform:uppercase; font-size:0.95rem;">Download Documenti e Allegati</p>
-        <p style="margin:0; font-size:0.95rem;">
-          <a href="./assets/docs/curriculum/curriculum_vitae_chiara_godina.pdf" target="_blank" rel="nofollow noopener noreferrer" download class="doc-download-link">Scarica Curriculum Vitae (PDF)</a> &nbsp;|&nbsp; 
+        <p class="cv-download-links" style="margin:0; font-size:0.95rem;">
+          <a href="./assets/docs/curriculum/curriculum_vitae_chiara_godina.pdf" target="_blank" rel="nofollow noopener noreferrer" download class="doc-download-link">Scarica Curriculum Vitae (PDF)</a><span class="cv-sep"> &nbsp;|&nbsp; </span>
           <a href="./assets/docs/curriculum/curriculum_vitae_chiara_godina_allegato.pdf" target="_blank" rel="nofollow noopener noreferrer" download class="doc-download-link">Scarica Allegato B (PDF)</a>
         </p>
       </div>
@@ -3261,6 +3367,7 @@
       if (navToggle) {
         navToggle.classList.remove("open");
         navToggle.setAttribute("aria-expanded", "false");
+        navToggle.setAttribute("aria-label", "Apri menu di navigazione");
       }
       var openItems = document.querySelectorAll(".nav-item.dropdown-open");
       for (var i = 0; i < openItems.length; i++) {
@@ -3396,6 +3503,7 @@
           var isOpen = mainNav.classList.toggle("open");
           navToggle.classList.toggle("open", isOpen);
           navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+          navToggle.setAttribute("aria-label", isOpen ? "Chiudi menu di navigazione" : "Apri menu di navigazione");
         });
       }
 
@@ -3422,6 +3530,12 @@
         lbImg.setAttribute("alt", caption);
         lbCaption.textContent = caption;
         lbCounter.textContent = (currentLightboxIndex + 1) + " / " + activeGalleryTriggers.length;
+
+        var hasMultiple = activeGalleryTriggers.length > 1;
+        if (btnPrev) btnPrev.style.display = hasMultiple ? "flex" : "none";
+        if (btnNext) btnNext.style.display = hasMultiple ? "flex" : "none";
+        if (lbCounter) lbCounter.style.display = hasMultiple ? "block" : "none";
+
         if (!overlay.classList.contains("active")) {
           lastFocusedElement = document.activeElement;
         }
@@ -3459,12 +3573,24 @@
       }
 
       document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape") {
+          if (overlay && overlay.classList.contains("active")) {
+            closeLightbox();
+          } else {
+            var openNav = document.getElementById("mainNavList");
+            if (openNav && openNav.classList.contains("open")) {
+              closeMobileMenu();
+              if (navToggle) navToggle.focus();
+            }
+          }
+        }
         if (!overlay || !overlay.classList.contains("active")) return;
-        if (e.key === "Escape") closeLightbox();
         if (e.key === "ArrowLeft") showPrevSlide();
         if (e.key === "ArrowRight") showNextSlide();
         if (e.key === "Tab") {
-          var focusables = [btnClose, btnPrev, btnNext].filter(Boolean);
+          var focusables = [btnClose, btnPrev, btnNext].filter(function(btn) {
+            return btn && btn.style.display !== "none";
+          });
           if (!focusables.length) return;
           var first = focusables[0];
           var last = focusables[focusables.length - 1];
@@ -3516,8 +3642,23 @@
           e.stopPropagation();
           var parentItem = subBtn.closest(".nav-item");
           if (parentItem) {
-            var isNowOpen = parentItem.classList.toggle("dropdown-open");
-            subBtn.setAttribute("aria-expanded", isNowOpen ? "true" : "false");
+            var wasOpen = parentItem.classList.contains("dropdown-open");
+            var allOpenItems = document.querySelectorAll(".nav-item.dropdown-open");
+            for (var k = 0; k < allOpenItems.length; k++) {
+              if (allOpenItems[k] !== parentItem) {
+                allOpenItems[k].classList.remove("dropdown-open");
+                var otherBtn = allOpenItems[k].querySelector(".submenu-toggle-btn");
+                if (otherBtn) otherBtn.setAttribute("aria-expanded", "false");
+              }
+            }
+            if (wasOpen) {
+              parentItem.classList.remove("dropdown-open");
+              subBtn.setAttribute("aria-expanded", "false");
+              subBtn.blur();
+            } else {
+              parentItem.classList.add("dropdown-open");
+              subBtn.setAttribute("aria-expanded", "true");
+            }
           }
           return;
         }
